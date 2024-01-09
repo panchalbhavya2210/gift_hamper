@@ -18,7 +18,7 @@ class usertable(models.Model):
     u_status=models.IntegerField()
 
 class userdeatiltable(models.Model):
-    u_id=
+    # u_id=
     dob=models.DateField()
     u_address=models.CharField(max_length=100)
     u_image=models.ImageField(upload_to='photos')
@@ -49,23 +49,23 @@ class producttable(models.Model):
     p_price=models.BigIntegerField()
     p_status=models.IntegerField()
     def P_Image(self):
-            return mark_safe('<img src={} width="100"/>'.format(self.p_image.url
+        return mark_safe('<img src={} width="100"/>'.format(self.p_image.url))
 
 class carttable(models.Model):
-        userid=
-        product_id=
-        p_quantity=
-        total_amount=models.IntegerField()
-        status=models.CharField(max_length=20)
+    # userid=
+    # product_id=
+    # p_quantity=
+    total_amount=models.IntegerField()
+    status=models.CharField(max_length=20)
 
 class ordertable(models.Model):
-    userid=
-    p_id=
-    cart_id=
+    # userid=
+    # p_id=
+    # cart_id=
     order_status=models.CharField(max_length=20)
 
 class cardtable(models.Model):
-    u_id=
+    # u_id=
     card_name=models.CharField(max_length=20)
     cvv=models.IntegerField()
     expiry_date=models.DateField()
@@ -73,27 +73,27 @@ class cardtable(models.Model):
     payment_id=models.CharField(max_length=20)
 
 class paymenttable(models.Model):
-    u_id=
-    order_id=
+    # u_id=
+    # order_id=
     payment_method=models.CharField(max_length=10)
-    total_amount=models.()
+    # total_amount=models.()
     payment_status=models.CharField(max_length=10)
 
 class returnproducttablr(models.Model):
-    u_id=
-    payment_id=
-    order_id=
+    # u_id=
+    # payment_id=
+    # order_id=
     date_of_return=models.DateField()
     return_status=models.CharField(max_length=15)
 
 class feedbacktable(models.Model):
-    u_id=
-    p_id=
+    # u_id=
+    # p_id=
     comment=models.TextField()
     rating=models.IntegerField()
 
 class complaintable(models.Model):
-    u_id=
+    # u_id=
     comment=models.TextField()
     complain_status=models.CharField(max_length=10)
     complain_date=models.DateField()
