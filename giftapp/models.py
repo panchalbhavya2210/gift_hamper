@@ -38,8 +38,8 @@ class userdeatiltable(models.Model):
         category_name=models.CharField(max_length=15)
 
     class producttable(models.Model):
-        catid=
-        stockist_id=
+        # catid=
+        # stockist_id=
         p_name=models.CharField(max_length=15)
         p_description=models.CharField(max_length=25)
         p_image=models.ImageField(upload_to='photos')
