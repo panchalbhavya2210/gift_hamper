@@ -97,3 +97,6 @@ class complaintable(models.Model):
     comment=models.TextField()
     complain_status=models.CharField(max_length=10)
     complain_date=models.DateField()
+
+
+# formated table
