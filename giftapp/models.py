@@ -52,16 +52,16 @@ class producttable(models.Model):
         return mark_safe('<img src={} width="100"/>'.format(self.p_image.url))
 
 class carttable(models.Model):
-    # userid=
-    # product_id=
-    # p_quantity=
+    userid = models.ForeignKey(usertable, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
+    c_quantity = models.IntegerField()
     total_amount=models.IntegerField()
     status=models.CharField(max_length=20)
 
 class ordertable(models.Model):
-    # userid=
-    # p_id=
-    # cart_id=
+    user_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
+    p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
+    cart_id = models.ForeignKey(carttable, on_delete=models.CASCADE)
     order_status=models.CharField(max_length=20)
 
 class cardtable(models.Model):
@@ -93,7 +93,7 @@ class feedbacktable(models.Model):
     rating=models.IntegerField()
 
 class complaintable(models.Model):
-    # u_id=
+    u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     comment=models.TextField()
     complain_status=models.CharField(max_length=10)
     complain_date=models.DateField()
