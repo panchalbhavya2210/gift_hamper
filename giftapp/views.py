@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def viewPage(request):
-    return render(request, "index.html")
+    return render(request, "base.html")
 def aboutPage(request):
     return render(request, "about.html")
 def blogDetails(request):
