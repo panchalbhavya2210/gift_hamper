@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html class="no-js" lang="en">
 
 
@@ -9,22 +10,22 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico'%}">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet"> 
     <!-- CSS
 	============================================ -->
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css'%}">
     <!-- Plugins CSS -->
-    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
     <!-- Modernizer JS -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
 </head>
 
 <body>
@@ -57,7 +58,8 @@
 
                                 <!-- Header Logo -->
                                 <div class="header-logo col-md-4 col-12">
-                                    <a href="index.html" class="logo"><img src="img/logo.png" alt="logo"></a>
+                                    <a href="index.html" class="logo"><img src="{% static 'img/logo.png'%}
+                                    " alt="logo"></a>
                                 </div>
 
                                 <!-- Account Menu -->
@@ -73,7 +75,7 @@
                                                 <div class="all-cart-product clearfix">
                                                     <div class="single-cart clearfix">
                                                         <div class="cart-image">
-                                                            <a href="product-details.html"><img src="img/cart/1.jpg" alt=""></a>
+                                                            <a href="product-details.html"><img src="{% static 'img/cart/1.jpg'%}" alt=""></a>
                                                         </div>
                                                         <div class="cart-info">
                                                             <h5><a href="product-details.html">Holiday Candle</a></h5>
@@ -83,7 +85,7 @@
                                                     </div>
                                                     <div class="single-cart clearfix">
                                                         <div class="cart-image">
-                                                            <a href="product-details.html"><img src="img/cart/2.jpg" alt=""></a>
+                                                            <a href="product-details.html"><img src="{% static 'img/cart/2.jpg'%}" alt=""></a>
                                                         </div>
                                                         <div class="cart-info">
                                                             <h5><a href="product-details.html">Christmas Tree</a></h5>
@@ -124,7 +126,7 @@
 
                         <!-- Header Bottom Logo -->
                         <div class="header-bottom-logo">
-                            <a href="index.html" class="logo"><img src="img/logo.png" alt="logo"></a>
+                            <a href="index.html" class="logo"><img src="{% static 'img/logo.png'%}" alt="logo"></a>
                         </div>
 
                         <!-- Main Menu -->
@@ -214,7 +216,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/1.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/1.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -260,7 +262,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/2.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/2.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -306,7 +308,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/3.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/3.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -352,7 +354,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/4.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/4.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -398,7 +400,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/5.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/5.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -444,7 +446,7 @@
                         <!-- Image Wrapper -->
                         <div class="image">
                             <!-- Image -->
-                            <a href="product-details.html" class="img"><img src="img/product/6.jpg" alt="Product"></a>
+                            <a href="product-details.html" class="img"><img src="{% static 'img/product/6.jpg'%}" alt="Product"></a>
                             <!-- Wishlist -->
                             <a href="#" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
@@ -515,7 +517,7 @@
                             <!-- Footer Widget -->
                             <div class="footer-widget col-lg-4 col-md-6 col-12 mb-40">
 
-                                <img class="footer-logo" src="img/footer-logo.png" alt="logo">
+                                <img class="footer-logo" src="{% static 'img/footer-logo.png'%}" alt="logo">
                                 <p>Contrary to popular belief, Lorem Ipsum is nosimply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over Lorem Ipsum is nosimply random text.</p>
 
                             </div>
@@ -586,17 +588,17 @@
 ============================================ -->
 
 <!-- jQuery JS -->
-<script src="js/vendor/jquery-1.12.0.min.js"></script>
+<script src="{% static 'js/vendor/jquery-1.12.0.min.js' %}"></script>
 <!-- Popper JS -->
-<script src="js/popper.min.js"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
 <!-- Bootstrap JS -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js'%}"></script>
 <!-- Plugins JS -->
-<script src="js/plugins.js"></script>
+<script src="{% static 'js/plugins.js'%}"></script>
 <!-- Ajax Mail JS -->
-<script src="js/ajax-mail.js"></script>
+<script src="{% static 'js/ajax-mail.js'%}"></script>
 <!-- Main JS -->
-<script src="js/main.js"></script>
+<script src="{% static 'js/main.js'%}"></script>
 </body>
 
 </html>
