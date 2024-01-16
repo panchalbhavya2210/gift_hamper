@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import usertable
 
 # Create your views here.
 
@@ -24,3 +25,14 @@ def underConsPage(request):
     return render(request, "under-construction.html")
 def wishList(request):
     return render(request, "wishlist.html")
+
+def registerUser(request):
+    if request.method == "POST":
+        user_name = request.POST.get('name')
+        user_email = request.POST.get('email')
+        user_password = request.POST.get('password')
+        user_phone = request.POST.get('ph_number')
+        
+        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status = 0)
+        insertData.save()
+    return render(request, "index.html")

@@ -4,6 +4,7 @@ from .import views
 urlpatterns = [
     path("", views.viewPage, name="base"),
     path("about", views.aboutPage, name="about"),
+    path('insert', views.registerUser, name='insert'),
     path("signup", views.signUp, name="signup"),
     path("cart", views.cartPage, name="cart"),
     path("checkout", views.checkoutPage, name="checkout"),

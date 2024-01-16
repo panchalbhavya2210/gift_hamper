@@ -19,7 +19,6 @@
     href="https://fonts.googleapis.com/css?family=Poppins:400,400i,700,700i"
     rel="stylesheet"
   />
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' *.googleapis.com; connect-src 'self' *.googleapis.com maps.googleapis.com">
 
   <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
 
@@ -219,8 +218,8 @@
     <script src="{% static '/js/main.js' %}"></script>
     <!-- Google Map Api -->
   
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZPf84AAVt8_FFN7rwQY5nPgB02SlTKs&callback=initialize" async defer></script>
-    <script src="{% static '/js/map.js' %}" async>
+    {% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlZPf84AAVt8_FFN7rwQY5nPgB02SlTKs&callback=initialize" async defer></script>
+    <script src="{% static '/js/map.js' %}" async> {% endcomment %}
     </script>
   
 </body>
