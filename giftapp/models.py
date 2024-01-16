@@ -16,7 +16,7 @@ class usertable(models.Model):
 class userdeatiltable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     dob=models.DateField()
-    u_address=models.CharField(max_length=100)
+    u_address=models.TextField()
     u_image=models.ImageField(upload_to='photos')
     
     def U_Image(self):
@@ -65,9 +65,9 @@ class cardtable(models.Model):
 
 class ordertable(models.Model):
     user_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
-    p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     cart_id = models.ForeignKey(carttable, on_delete=models.CASCADE)
     payment_method=models.CharField(max_length=10)
+    total_amount=models.FloatField()
     order_status=models.CharField(max_length=20)
 
 class paymenttable(models.Model):
