@@ -84,9 +84,10 @@
       {% include 'includes/header.html' %}
       
 
-      <div class="contact-form">
-        <h4 class="title">Sign Up</h4>
-        <form class="signup-form" id="contact-form"  method="post">{% csrf_token %}
+    
+        <form class="signup-form" id="contact-form" action="/insert"  method="post">{% csrf_token %}
+          <div class="contact-form">
+            <h4 class="title">Sign Up</h4>
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" />
             <label for="email">Your Email</label>
@@ -96,9 +97,10 @@
             <label for="message">Your Password</label>
             <input type="password"/ placeholder="Enter Your Password" name="password">
             <input type="submit" class="btnSub" value="Submit"/>
+            <p class="form-message"></p>
+          </div>
         </form>
-        <p class="form-message"></p>
-    </div>
+      
 
       <!-- Footer Section Start-->
       {% include 'includes/footer.html' %}
