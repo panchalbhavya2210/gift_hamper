@@ -4,6 +4,8 @@ from django.shortcuts import render
 
 def viewPage(request):
     return render(request, "base.html")
+def signUp(request):
+    return render(request, "signup.html")
 def aboutPage(request):
     return render(request, "about.html")
 def blogDetails(request):
