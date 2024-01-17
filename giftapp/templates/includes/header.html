@@ -61,8 +61,11 @@
 
                     <!-- Account Menu -->
                     <div class="account-menu col-md-4 col-12">
+                     
+                    </ul>
+                     </li>
                       <ul>
-                        <li><a href="/signup">My Account</a></li>
+                        
                         <li><a href="wishlist">Wishlist</a></li>
                         <li>
                           <a href="#" data-toggle="dropdown"
@@ -176,7 +179,7 @@
                     <li>
                       <a href="#">pages</a>
                       <ul class="sub-menu">
-                        <li><a href="cart">cart</a></li>
+                        <li><a href="/cart">cart</a></li>
                         <li><a href="checkout">checkout</a></li>
                         <li><a href="wishlist">wishlist</a></li>
                         <li>
@@ -193,6 +196,14 @@
                         <li><a href="blog-details">blog details</a></li>
                       </ul>
                     </li>
+                    <li>
+                      <a href="">My Account</a>
+                      <ul class="sub-menu">
+                        <li><a href="/signup">Sign Up</a></li>
+                        <li><a href="/login">Log In</a></li>
+                      </ul>
+                    </li>
+                    
                     {% if request.path == "/contact" %}
                     <li class='active'><a  href="/contact">Contact</a></li>
                     {% else %}

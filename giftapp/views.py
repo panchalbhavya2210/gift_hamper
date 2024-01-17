@@ -35,4 +35,4 @@ def registerUser(request):
         
         insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status = 0)
         insertData.save()
-    return render(request, "index.html")
+    return render(request, "base.html")
