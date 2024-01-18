@@ -8,6 +8,8 @@ def viewPage(request):
     return render(request, "base.html")
 def signUp(request):
     return render(request, "signup.html")
+def login(request):
+    return render(request, "login.html")
 def signUpSeller(request):
     return render(request, 'signup_store.html')
 def aboutPage(request):
