@@ -2,8 +2,8 @@
   "use strict";
 
   /*--
-	Menu Sticky
------------------------------------*/
+    Menu Sticky
+  -----------------------------------*/
   var windows = $(window);
   var sticky = $(".header-bottom");
 
@@ -38,20 +38,20 @@
   });
 
   /*--
-	Mobile Menu
-------------------------*/
+    Mobile Menu
+  ------------------------*/
   $("#main-menu").meanmenu({
     meanScreenWidth: "767",
     meanMenuContainer: ".mobile-menu",
     meanMenuClose: '<i class="ion-android-close"></i>',
-    // meanMenuOpen: '<i class="ion-navicon"></i>',
+    meanMenuOpen: '<i class="ion-navicon"></i>',
     meanRevealPosition: "left",
     meanMenuCloseSize: "30px",
   });
 
   /*-- 
-    Search Toggle
------------------------------------*/
+      Search Toggle
+  -----------------------------------*/
   var headerSearchForm = $(".header-search-form");
   var searchToggle = $(".search-toggle");
   searchToggle.on("click", function () {
@@ -65,8 +65,8 @@
   });
 
   /*-- 
-    Checkout Login/Register Form Toggle
------------------------------------*/
+      Checkout Login/Register Form Toggle
+  -----------------------------------*/
   var checkoutMethodList = $(".checkout-method-list li");
   checkoutMethodList.on("click", function () {
     var form = $(this).data("form");
@@ -81,8 +81,8 @@
   });
 
   /*-- 
-    Checkout Shipping Form Toggle
------------------------------------*/
+      Checkout Shipping Form Toggle
+  -----------------------------------*/
   var shipingFormToggle = $(".shipping-form-toggle");
   var shipingForm = $(".shipping-form");
   shipingFormToggle.on("click", function () {
@@ -96,8 +96,8 @@
   });
 
   /*-- 
-    Payment Method Toggle
------------------------------------*/
+      Payment Method Toggle
+  -----------------------------------*/
   var paymentMethodList = $(".payment-method-list li");
   var paymentFormToggle = $(".payment-form-toggle");
   var paymentForm = $(".payment-form");
@@ -112,8 +112,8 @@
   });
 
   /*--
-	Hero Slider
------------------------------------*/
+    Hero Slider
+  -----------------------------------*/
   $(".hero-slider").slick({
     arrows: false,
     autoplay: false,
@@ -124,8 +124,8 @@
   });
 
   /*--
-	Testimonial Slider
------------------------------------*/
+    Testimonial Slider
+  -----------------------------------*/
   $(".testimonial-slider").slick({
     arrows: false,
     autoplay: false,
@@ -135,8 +135,8 @@
   });
 
   /*--
-	Client Slider
------------------------------------*/
+    Client Slider
+  -----------------------------------*/
   $(".client-slider").slick({
     arrows: false,
     autoplay: true,
@@ -166,8 +166,8 @@
   });
 
   /*--
-	Single Product Thubmnail & Image Slider
------------------------------------*/
+    Single Product Thubmnail & Image Slider
+  -----------------------------------*/
   $(".product-thumbnail-slider").slick({
     autoplay: false,
     infinite: true,
@@ -193,16 +193,16 @@
   });
 
   /*--
-	Counter UP
------------------------------------*/
+    Counter UP
+  -----------------------------------*/
   $(".counter").counterUp({
     delay: 20,
     time: 3000,
   });
 
   /*--
-	Scroll Up
------------------------------------*/
+    Scroll Up
+  -----------------------------------*/
   $.scrollUp({
     easingType: "linear",
     scrollSpeed: 900,
@@ -211,8 +211,8 @@
   });
 
   /*----- 
-	Cart Plus Minus
---------------------------------*/
+    Cart Plus Minus
+  --------------------------------*/
   $(".product-quantity").prepend(
     '<span class="dec qtybtn"><i class="fa fa-angle-left"></i></span>'
   );
@@ -236,8 +236,8 @@
   });
 
   /*--
-    Magnific Video Popup
---------------------------------*/
+      Magnific Video Popup
+  --------------------------------*/
   var videoPopup = $(".video-popup");
   videoPopup.magnificPopup({
     type: "iframe",

@@ -37,9 +37,9 @@ class giftstockisttable(models.Model):
     email=models.CharField(max_length=20)
     phone_no=models.IntegerField()
     address=models.TextField(max_length=40)
-    stockist_image=models.ImageField(upload_to='photos')
+    stockist_image=models.ImageField()
     def Stockist_Image(self):
-           return mark_safe('<img src={} width="100"/>'.format(self.stockist_image.url))
+           return mark_safe('<img src="{}" width="100"/>'.format(self.stockist_image.url))
 
 class categorytable(models.Model):
     category_name=models.CharField(max_length=15)

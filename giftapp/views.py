@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .models import usertable
+from .models import usertable, giftstockisttable
 
 # Create your views here.
 
@@ -46,3 +46,19 @@ def registerUser(request):
         return redirect(reverse('insert'))
 
     return render(request, "index.html")
+
+
+def registerSeller(request):
+    if request.method == "POST":
+        seller_name = request.POST.get('seller_name')
+        seller_email = request.POST.get('seller_email')
+        sller_ph_number = request.POST.get('seller_ph_number')
+        seller_password = request.POST.get('seller_password')
+        seller_address = request.POST.get('seller_address')
+        seller_image = request.FILES['sImage']
+        
+        insertSellerData = giftstockisttable(name=seller_name, email=seller_email, password=seller_password, phone_no=sller_ph_number, address=seller_address, stockist_image=seller_image)
+        insertSellerData.save()
+        
+        return redirect(reverse('insert_seller'))
+    return render(request, 'index.html')
