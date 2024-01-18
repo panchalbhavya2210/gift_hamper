@@ -5,6 +5,8 @@ from .models import usertable
 
 def viewPage(request):
     return render(request, "base.html")
+def loginpage(request):
+    return render(request, "login.html")
 def signUp(request):
     return render(request, "signup.html")
 def aboutPage(request):
