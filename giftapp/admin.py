@@ -5,7 +5,7 @@ from .models import feedbacktable, usertable,userdeatiltable,giftstockisttable,f
 
 
 class showUser(admin.ModelAdmin):
-    list_display = ["u_name", "u_email", "u_phone", "u_status", "u_image"]
+    list_display = ["u_name", "u_email","u_password", "u_phone", "u_status", "user_photo"]
 admin.site.register(usertable, showUser)
 
 class showUserDetail(admin.ModelAdmin):
