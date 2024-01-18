@@ -36,7 +36,6 @@
 
     .contact-form {
       position: relative;
-      top: 40px;
         text-align: left;
         max-width: 500px;
         width: 100%;
@@ -79,6 +78,10 @@
     .form-message {
         margin-top: 15px;
     }
+    .signup-form {
+      background-color: #fff;
+
+    }
   
 </style>
   <body>
@@ -98,7 +101,7 @@
 
       <!-- Header Section Start -->
       <div class="contact-form">
-        <h4 class="title">Sign Up</h4>
+        <h4 class="">Sign Up</h4>
         <form class="signup-form"  action="/insert" method="post" enctype="multipart/form-data">{% csrf_token %}
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" />
