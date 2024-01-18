@@ -35,10 +35,6 @@
   
 
     .contact-form {
-<<<<<<< HEAD
-      position: relative;
-=======
->>>>>>> ef7104768ecb3a4a80e68528499ce5a823a61904
         text-align: left;
         max-width: 500px;
         width: 100%;
@@ -81,17 +77,10 @@
     .form-message {
         margin-top: 15px;
     }
-<<<<<<< HEAD
-    .signup-form {
-      background-color: #fff;
-
-    }
-=======
     .hidden {
       opacity: 0;
     }
   
->>>>>>> ef7104768ecb3a4a80e68528499ce5a823a61904
   
 </style>
   <body>
@@ -111,11 +100,7 @@
 
       <!-- Header Section Start -->
       <div class="contact-form">
-<<<<<<< HEAD
-        <h4 class="">Sign Up</h4>
-=======
         <h4 class="hidden">/</h4>
->>>>>>> ef7104768ecb3a4a80e68528499ce5a823a61904
         <form class="signup-form"  action="/insert" method="post" enctype="multipart/form-data">{% csrf_token %}
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" />
@@ -125,11 +110,11 @@
             <input type="tel" id="ph" name="ph_number" placeholder="Your Phone No." />
             <label for="message">Your Password</label>
             <input type="text" name="password" placeholder="Enter Your Password">
+            <input type="text" name="address" placeholder="Enter Your Password">
             <input type="file" name="uImage" id="user_image" accept="image/*" required>
             <input type="submit" class="btnSub" value="Submit"/>
         </form>
         <p class="form-message"></p>
-        <p>Craft. Sell. Thrive.  <a href="/register_seller">Join as a Seller Now!</a></p>
       </div>
         {% include 'includes/footer.html' %}
 
