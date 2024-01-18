@@ -32,9 +32,11 @@
   <script src="{% static "/js/vendor/modernizr-2.8.3.min.js" %}"></script>
   </head>
   <style>
-   
+  
 
     .contact-form {
+      position: relative;
+      top: 40px;
         text-align: left;
         max-width: 500px;
         width: 100%;
@@ -42,7 +44,9 @@
         border-radius: 8px;
         margin: 100px auto;
     }
-
+    .contact-form::before {
+      display: none;
+    }
     .contact-form h4 {
         margin-bottom: 15px;
     }
@@ -81,6 +85,16 @@
     <!-- Main Wrapper Start -->
     <div id="main-wrapper" class="section">
       {% include 'includes/header.html' %}
+      <div class="page-banner-section section" style="background-image: url(https://images.pexels.com/photos/921290/pexels-photo-921290.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="page-title text-center col">
+                    <h1>sign up</h1>
+                </div><!-- Page Title End -->
+            </div>
+        </div>
+    </div><!-- Page Banner Section End-->
 
       <!-- Header Section Start -->
       <div class="contact-form">
@@ -118,7 +132,6 @@
     <script src="{% static '/js/main.js' %}"></script>
     <!-- Google Map Api -->
   
-    </script>
   
 </body>
 </html>

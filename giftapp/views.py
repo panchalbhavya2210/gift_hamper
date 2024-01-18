@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import usertable
 
 # Create your views here.
@@ -36,6 +37,10 @@ def registerUser(request):
         user_phone = request.POST.get('ph_number')
         user_image = request.FILES['uImage']
         
-        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status = 0, u_image=user_image)
+        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status=0, u_image=user_image)
         insertData.save()
-    return render(request, "insert.html")
+
+        # Redirect to a success page
+        return redirect(reverse('insert'))
+
+    return render(request, "index.html")
