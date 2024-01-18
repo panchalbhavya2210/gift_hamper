@@ -7,6 +7,8 @@ def viewPage(request):
     return render(request, "base.html")
 def signUp(request):
     return render(request, "signup.html")
+def signUpSeller(request):
+    return render(request, 'signup_store.html')
 def aboutPage(request):
     return render(request, "about.html")
 def blogDetails(request):
@@ -32,7 +34,8 @@ def registerUser(request):
         user_email = request.POST.get('email')
         user_password = request.POST.get('password')
         user_phone = request.POST.get('ph_number')
+        user_image = request.FILES['uImage']
         
-        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status = 0)
+        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status = 0, u_image=user_image)
         insertData.save()
-    return render(request, "base.html")
+    return render(request, "insert.html")

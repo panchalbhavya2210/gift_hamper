@@ -5,11 +5,11 @@ from .models import feedbacktable, usertable,userdeatiltable,giftstockisttable,f
 
 
 class showUser(admin.ModelAdmin):
-    list_display = ["u_name", "u_email", "u_phone", "u_status"]
+    list_display = ["u_name", "u_email", "u_phone", "u_status", "u_image"]
 admin.site.register(usertable, showUser)
 
 class showUserDetail(admin.ModelAdmin):
-    list_display = ["u_id", "dob", "u_address", "u_image"]
+    list_display = ["u_id", "dob", "u_address"]
 admin.site.register(userdeatiltable, showUserDetail)
 
 class showGiftStockist(admin.ModelAdmin):

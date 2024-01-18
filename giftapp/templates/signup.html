@@ -85,7 +85,7 @@
       <!-- Header Section Start -->
       <div class="contact-form">
         <h4 class="title">Sign Up</h4>
-        <form class="signup-form"  action="/insert" method="post">{% csrf_token %}
+        <form class="signup-form"  action="/insert" method="post" enctype="multipart/form-data">{% csrf_token %}
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" placeholder="Your Name" />
             <label for="email">Your Email</label>
@@ -94,6 +94,7 @@
             <input type="tel" id="ph" name="ph_number" placeholder="Your Phone No." />
             <label for="message">Your Password</label>
             <input type="password"/ placeholder="Enter Your Password" name="password">
+            <input type="file" name="uImage" id="user_image" accept="image/*" required>
             <input type="submit" class="btnSub" value="Submit"/>
         </form>
         <p class="form-message"></p>

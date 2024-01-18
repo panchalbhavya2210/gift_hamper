@@ -20,15 +20,16 @@ class usertable(models.Model):
     u_password=models.CharField(max_length=25)
     u_phone=models.BigIntegerField()
     u_status=models.IntegerField(choices=U_STATUS, default=0)
+    u_image=models.ImageField(upload_to='photos')
+
+    def U_Image(self):
+         return mark_safe('<img src="{}" width="100"'.format(self.u_image.url))
 
 class userdeatiltable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     dob=models.DateField()
     u_address=models.TextField()
-    u_image=models.ImageField(upload_to='photos')
     
-    def U_Image(self):
-        return mark_safe('<img src={} width="100"/>'.format(self.u_image.url))
 
 class giftstockisttable(models.Model):
     name=models.CharField(max_length=15)
