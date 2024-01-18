@@ -11,7 +11,7 @@ def signUp(request):
 def login(request):
     return render(request, "login.html")
 def signUpSeller(request):
-    return render(request, 'signup_store.html')
+    return render(request, 'reg_seller.html')
 def aboutPage(request):
     return render(request, "about.html")
 def blogDetails(request):
