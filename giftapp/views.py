@@ -1,5 +1,7 @@
+import imp
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib.auth import login, authenticate
 from .models import usertable, giftstockisttable
 
 # Create your views here.
@@ -62,3 +64,12 @@ def registerSeller(request):
         
         return redirect(reverse('insert_seller'))
     return render(request, 'index.html')
+
+def loginUser(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect(reverse('login'))
