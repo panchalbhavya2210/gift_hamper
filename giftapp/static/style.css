@@ -1594,10 +1594,10 @@ textarea:-ms-input-placeholder {
   display: flex;
   width: 80px;
 }
-.header-bottom-logo .logo img {
-  width: 100%;
+/* .header-bottom-logo .logo img {
+  width: 150%;
   height: 100%;
-}
+} */
 
 /*-- Main Menu --*/
 .main-menu {
