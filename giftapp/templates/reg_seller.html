@@ -101,22 +101,31 @@
       <!-- Header Section Start -->
       <div class="contact-form">
         <h4 class="hidden">/</h4>
-        <form class="signup-form"  action="/insert_seller" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form class="signup-form"  action="/insert_seller" method="post" onsubmit="return validateSignUp(event);" enctype="multipart/form-data">{% csrf_token %}
             <label for="name">Your Name</label>
-            <input type="text" id="seller_name" name="seller_name" placeholder="Your Name" />
+            <input type="text" id="name" name="seller_name" placeholder="Your Name" />
+           
             <label for="email">Your Email</label>
-            <input type="email" id="seller_email" name="seller_email" placeholder="Your Email" />
+            <input type="email" id="email" name="seller_email" placeholder="Your Email" />
+           
             <label for="email">Your Phone</label>
             <input type="tel" id="ph" name="seller_ph_number" placeholder="Your Phone No." />
+           
             <label for="message">Your Password</label>
-            <input type="text" name="seller_password" placeholder="Enter Your Password"/>
+            <input type="text" name="seller_password" id="password" placeholder="Enter Your Password"/>
+           
             <label for="address">Your Address</label>
-
             <textarea type="text" name="seller_address" placeholder="Enter Your Address"></textarea>
-            <input type="file" name="sImage" id="seller_image" accept="image/*" required>
+        
+            <input type="file" name="sImage" id="user_image" accept="image/*">
+           
             <input type="submit" class="btnSub" value="Submit"/>
         </form>
         <p class="form-message"></p>
+
+        <div class="hidden alert alert-warning" id="warnBlock" role="alert">
+          <p id="alertUser"></p>
+        </div>
       </div>
         {% include 'includes/footer.html' %}
 
@@ -135,6 +144,8 @@
     <script src="{% static '/js/ajax-mail.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static '/js/main.js' %}"></script>
+    <script src="{% static '/js/validate-form.js' %}"></script>
+
     <!-- Google Map Api -->
   
   
