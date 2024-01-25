@@ -1,5 +1,8 @@
+import imp
+import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth import login, authenticate # type: ignore
 from .models import usertable, giftstockisttable
 
@@ -67,3 +70,21 @@ def registerSeller(request):
         
         return redirect(reverse('insert_seller'))
     return render(request, 'index.html')
+
+def checklogin(request):
+    useremail=request.POST["email"]
+    userpaswd=request.POST["password"]
+
+    try:
+        query=usertable.objects.get(email=useremail,password=userpaswd)
+        request.session['user_email']=query.email # type: ignore
+        request.session['user_id']=query.id # type: ignore
+        print( request.session['user_id'])
+    except usertable.DoesNotExist:
+        query=None
+    if query is not None:
+        return render(request,template_name='index.html')
+    else:
+        messages.info(request,'Account does not exist!! Please sign in')
+    return render(request,template_name='signup.html')
+
