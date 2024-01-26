@@ -157,6 +157,28 @@
                     {% else %}
                     <li ><a  href="/">Home</a></li>
                     {% endif %}
+                    {% if request.path == "/shop" or request.path == "/product-details" %}
+                    <li class="active">
+                      <a href="shop" class="active">shop</a>
+                      <ul class="sub-menu">
+                        {% if request.path == "/shop" %}
+                        <li class='active'><a href="shop">shop page</a></li>
+                        {%else%}
+                        <li><a href="shop">shop page</a></li>
+                        {%endif%}
+                        {% if request.path == "/product-details" %}
+                        <li class="active">
+                          <a href="product-details">product details</a>
+                        </li>
+                        {%else%}
+                        <li>
+                          <a href="product-details">product details</a>
+                        </li>
+                        {%endif%}
+                       
+                      </ul>
+                    </li>
+                    {%else%}
                     <li>
                       <a href="shop">shop</a>
                       <ul class="sub-menu">
@@ -166,11 +188,40 @@
                         </li>
                       </ul>
                     </li>
+                    {%endif%}
                     {% if request.path == "/about" %}
                     <li class='active'><a  href="/about">about</a></li>
                     {% else %}
                     <li ><a  href="/about">about</a></li>
                     {% endif %}
+
+                    {%if request.path == "/cart" or request.path == "/checkout" or request.path == "/wishlist" or request.path == "under-construction"%}
+                    <li class='active'>
+                      <a href="#">pages</a>
+                      <ul class="sub-menu">
+                        {%if request.path == "/cart"%}
+                        <li class="active"><a href="/cart">cart</a></li>
+                        {%else%}
+                        <li><a href="/cart">cart</a></li>
+                        {%endif%}
+                        {%if request.path == "/checkout"%}
+                        <li class='active'><a href="checkout">checkout</a></li>
+                        {%else%}
+                        <li><a href="checkout">checkout</a></li>
+                        {%endif%}
+                        {%if request.path == "/wishlist"%}
+                        <li class='active'><a href="wishlist">wishlist</a></li>
+                        {%else%}
+                        <li><a href="wishlist">wishlist</a></li>
+                        {%endif%}
+                        <li>
+                          <a href="under-construction"
+                            >Under Construction</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                    {%else%}
                     <li>
                       <a href="#">pages</a>
                       <ul class="sub-menu">
@@ -184,6 +235,7 @@
                         </li>
                       </ul>
                     </li>
+                    {%endif%}
                     <li>
                       <a href="blog">blog</a>
                       <ul class="sub-menu">
