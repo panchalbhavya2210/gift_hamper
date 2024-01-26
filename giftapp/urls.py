@@ -7,6 +7,8 @@ urlpatterns = [
     path('insert', views.registerUser, name='insert'),
     path("signup", views.signUp, name="signup"),
     path("login", views.login, name="login"),
+    path('login_user', views.checklogin, name="login_user"),
+    path("logout", views.logOutUser, name="logout"),
     path("register_seller", views.signUpSeller, name="register_seller"),
     path("login_seller", views.loginSeller, name="login_seller"),
     path("check_login_seller", views.checkSellerLogin, name="check_login_seller"),
@@ -20,5 +22,4 @@ urlpatterns = [
     path("wishlist", views.wishList, name="wishlist"),
     path("blog", views.blogPage, name="blog"),
     path("blog-details", views.blogList, name="blog-details"),
-    path('loggin', views.checklogin, name="loggin")
 ]

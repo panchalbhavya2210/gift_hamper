@@ -35,18 +35,54 @@
   .hidden {
     display: none;
   }
+  .alert {
+    position: absolute;
+    top:0;
+    font-size: 20px;
+    {% comment %} top: 20px; /* Adjust as needed */ {% endcomment %}
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #28a745; /* Adjust background color */
+    color: #fff; /* Adjust text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.alert.show {
+    display: block;
+    animation: fadeInOut 5s ease-out;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 </style>
 
 
   <body>
-    
+    <div class="alert alert-success hidden" id="alert">
+      <p id="innertxt"></p>
+    </div>
     <!-- Main Wrapper Start -->
     <div id="main-wrapper" class="section">
       <!-- Header Section Start -->
+     
       {% include 'includes/header.html' %}
-      <div class="alert alert-success hidden" id="alert">
-        Succefully logged in.
-      </div>
+      
       
       <!-- Header Section End -->
 
@@ -665,15 +701,28 @@
 
     <script>
       {% if messages %}
-      let alertId = document.getElementById("alert")
-      alertId.classList.remove('hidden')
-
-      {% for message in messages %}
-      {% endfor %}
-      setTimeout(() => {
-        alertId.classList.add('hidden')
-      }, 5000)
-      {% endif %}
+        document.addEventListener("DOMContentLoaded", function () {
+          let alertId = document.getElementById("alert");
+          let innertxt = document.getElementById("innertxt");
+          alertId.classList.remove('hidden');
+    
+          {% for message in messages %}
+            // Create a new element to hold the message
+            let messageElement = document.createElement("div");
+            messageElement.textContent = "{{ message }}"; // Assuming the message is a text
+    
+            // Append the message element to innertxt
+            innertxt.appendChild(messageElement);
+          {% endfor %}
+    
+          setTimeout(() => {
+            alertId.classList.add('hidden');
+            // Clear the messages after hiding the alert
+            innertxt.innerHTML = "";
+          }, 5000);
+        });
+    {% endif %}
+    
       </script>
   </body>
 </html>

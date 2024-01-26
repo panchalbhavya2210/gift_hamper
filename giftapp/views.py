@@ -50,7 +50,7 @@ def registerUser(request):
         insertData.save()
 
         # Redirect to a success page
-        return redirect(reverse('insert'))
+        return redirect(reverse('base'))
 
     return render(request, "index.html")
 
@@ -71,9 +71,16 @@ def registerSeller(request):
     return render(request, 'index.html')
 
 def checklogin(request):
+# +    """
+# +    Check user login credentials and redirect based on the result.
+# +    Parameters:
+# +        request: The HTTP request object containing user input.
+# +
+# +    Returns:
+# +        If login is successful, redirects to the 'base' URL. If login fails, redirects to the 'login' URL.
+# +    """
     useremail=request.POST["email"]
     userpaswd=request.POST["password"]
-
     try:
         query=usertable.objects.get(u_email=useremail,u_password=userpaswd)
         request.session['u_email']=query.u_email 
@@ -84,10 +91,19 @@ def checklogin(request):
     except usertable.DoesNotExist:
         query=None
     if query is not None:
-        return render(request,'index.html')
+        return redirect(reverse('base'))
     else:
         messages.info(request, 'Incorrect email or password. Please try again.')
     return redirect(reverse('login'))
+
+
+def logOutUser(request):
+    # Clear the relevant session variables for logout
+    request.session.pop('u_email', None)
+    request.session.pop('u_id', None)
+    request.session.pop('u_image', None)
+    messages.success(request, "Logged out successfully.")
+    return redirect(reverse('base'))
 
 def checkSellerLogin(request):
     seller_email=request.POST["email"]
