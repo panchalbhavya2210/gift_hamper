@@ -86,5 +86,5 @@ def checklogin(request):
     if query is not None:
         return render(request,'index.html')
     else:
-        messages.info(request,'Account does not exist!! Please sign in')
+        messages.info(request, 'Incorrect email or password. Please try again.')
     return redirect(reverse('login'))
