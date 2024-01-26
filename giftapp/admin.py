@@ -13,7 +13,7 @@ class showUserDetail(admin.ModelAdmin):
 admin.site.register(userdeatiltable, showUserDetail)
 
 class showGiftStockist(admin.ModelAdmin):
-    list_display = ["name", "email", "phone_no", "address", "Stockist_Image"]
+    list_display = ["name", "email","password", "phone_no", "address", "Stockist_Image"]
 admin.site.register(giftstockisttable, showGiftStockist)
 
 class showCategory(admin.ModelAdmin):

@@ -1,5 +1,3 @@
-import imp
-import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
@@ -15,6 +13,8 @@ def login(request):
     return render(request, "login.html")
 def signUpSeller(request):
     return render(request, 'reg_seller.html')
+def loginSeller(request):
+    return render(request, "login_seller.html")
 def aboutPage(request):
     return render(request, "about.html")
 def blogDetails(request):
@@ -88,3 +88,22 @@ def checklogin(request):
     else:
         messages.info(request, 'Incorrect email or password. Please try again.')
     return redirect(reverse('login'))
+
+def checkSellerLogin(request):
+    seller_email=request.POST["email"]
+    seller_paswd=request.POST["password"]
+
+    try:
+        query=giftstockisttable.objects.get(email=seller_email,password=seller_paswd)
+        request.session['seller_email']=query.email
+        request.session['seller_id']=query.id #type:ignore
+        request.session['seller_image'] = query.stockist_image.url if query.stockist_image else None
+        messages.success(request, "Logged In Successfully.")
+        print( request.session['seller_image'])
+    except usertable.DoesNotExist:
+        query=None
+    if query is not None:
+        return render(request,'index.html')
+    else:
+        messages.info(request, 'Incorrect email or password. Please try again.')
+    return redirect(reverse('login_seller'))
