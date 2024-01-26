@@ -236,6 +236,23 @@
                       </ul>
                     </li>
                     {%endif%}
+                    {%if request.path == "/blog" or request.path == "/blog-details"%}
+                    <li class='active'>
+                      <a href="blog">blog</a>
+                      <ul class="sub-menu">
+                        {%if request.path == "/blog"%}
+                        <li class='active'><a href="blog">blog page</a></li>
+                        {%else%}
+                        <li><a href="blog">blog page</a></li>
+                        {%endif%}
+                        {%if request.path == "/blog-details"%}
+                        <li class='active'><a href="blog-details">blog details</a></li>
+                        {%else%}
+                        <li><a href="blog-details">blog details</a></li>
+                        {%endif%}
+                      </ul>
+                    </li>
+                    {%else%}
                     <li>
                       <a href="blog">blog</a>
                       <ul class="sub-menu">
@@ -243,28 +260,68 @@
                         <li><a href="blog-details">blog details</a></li>
                       </ul>
                     </li>
-                    <li>
+                    {%endif%}
+                   
+                    {%if request.path == "/signup" or request.path == "/login"%}
+                    <li class='active'>
+                      <a>My account</a>
+                      <ul class="sub-menu">
+                        {%if request.path == "/signup"%}
+                        <li class='active'><a href="/signup">Sign Up</a></li>
+                        {%else%}
+                        <li><a href="/signup">Sign Up</a></li>
+                        {%endif%}
+                        {%if request.path == "/login"%}
+                        <li class='active'><a href="/login">Log In</a></li>
+                        {%else%}
+                        <li><a href="/login">Log In</a></li>
+                        {%endif%}
+                      </ul>
+                    </li>
+                    {%else%}
+                    <li >
                       <a>My account</a>
                       <ul class="sub-menu">
                         <li><a href="/signup">Sign Up</a></li>
                         <li><a href="/login">Log In</a></li>
                       </ul>
                     </li>
-                   
+                    {%endif%}
                     {% if request.path == "/contact" %}
                     <li class='active'><a  href="/contact">Contact</a></li>
                     {% else %}
                     <li ><a  href="/contact">Contact</a></li>
                     {% endif %}
 
+                   
+
+                    {%if request.path == '/register_seller' or request.path == '/login_seller'%}
+                    <li class='active'>
+                      <a href=''>Seller</a>
+                      <ul class="sub-menu">
+                        <li><a href="/under-construction">Account Details</a></li>
+                        {%if request.path == "/register_seller"%}
+                        <li class='active'><a href="/register_seller">Sign Up</a></li>
+                        {%else%}
+                        <li><a href="/register_seller">Sign Up</a></li>
+                        {%endif%}
+                        {%if request.path == "/login_seller"%}
+                        <li class='active'><a href="/login_seller">log in</a></li>
+                        {%else%}
+                        <li><a href="/login_seller">log in</a></li>
+                        {%endif%}
+                      </ul>
+                    </li>
+                    {%else%}
                     <li>
                       <a href=''>Seller</a>
                       <ul class="sub-menu">
-                        <li><a href="/signup">Account Details</a></li>
+                        <li><a href="/under-construction">Account Details</a></li>
                         <li><a href="/register_seller">Sign Up</a></li>
                         <li><a href="/login_seller">Log In</a></li>
                       </ul>
                     </li>
+                    {%endif%}
                   </ul>
                 </nav>
 
