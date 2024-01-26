@@ -31,12 +31,23 @@
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
 </head>
 
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+
+
   <body>
+    
     <!-- Main Wrapper Start -->
     <div id="main-wrapper" class="section">
       <!-- Header Section Start -->
       {% include 'includes/header.html' %}
-
+      <div class="alert alert-success hidden" id="alert">
+        Succefully logged in.
+      </div>
+      
       <!-- Header Section End -->
 
       <!-- Hero Slider Start-->
@@ -651,5 +662,18 @@
     <script src="{% static '/js/ajax-mail.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static '/js/main.js' %}"></script>
+
+    <script>
+      {% if messages %}
+      let alertId = document.getElementById("alert")
+      alertId.classList.remove('hidden')
+
+      {% for message in messages %}
+      {% endfor %}
+      setTimeout(() => {
+        alertId.classList.add('hidden')
+      }, 5000)
+      {% endif %}
+      </script>
   </body>
 </html>

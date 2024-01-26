@@ -2,7 +2,7 @@ let email = document.getElementById("email");
 let userName = document.getElementById("name");
 let userPhone = document.getElementById("ph");
 let userPassword = document.getElementById("password");
-let userImage = document.getElementById("user_image");
+let userImage = document.getElementById("user_imagee");
 let warnData = document.getElementById("alertUser");
 let warnBlock = document.getElementById("warnBlock");
 
@@ -17,7 +17,7 @@ const validateEmail = (email) => {
 };
 
 function validateSignUp(e) {
-  console.log(userImage[0]);
+  console.log(userImage);
   validateEmail(email.value);
   if (userName.value == "") {
     e.preventDefault();
@@ -37,11 +37,6 @@ function validateSignUp(e) {
   } else if (userPassword.value.length < 8 && userPassword.value == "") {
     e.preventDefault();
     warnData.innerHTML = "Please Enter Your Password";
-    warnBlock.classList.remove("hidden");
-    return false;
-  } else if (userImage[0] == undefined) {
-    e.preventDefault();
-    warnData.innerHTML = "Please Upload Your Profile Image";
     warnBlock.classList.remove("hidden");
     return false;
   } else {

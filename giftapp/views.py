@@ -3,7 +3,6 @@ import re
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
-from django.contrib.auth import login, authenticate # type: ignore
 from .models import usertable, giftstockisttable
 
 # Create your views here.
@@ -76,15 +75,16 @@ def checklogin(request):
     userpaswd=request.POST["password"]
 
     try:
-        query=usertable.objects.get(email=useremail,password=userpaswd)
-        request.session['user_email']=query.email # type: ignore
-        request.session['user_id']=query.id # type: ignore
-        print( request.session['user_id'])
+        query=usertable.objects.get(u_email=useremail,u_password=userpaswd)
+        request.session['u_email']=query.u_email 
+        request.session['u_id']=query.id #type:ignore
+        request.session['u_image'] = query.u_image.url if query.u_image else None
+        messages.success(request, "Logged In Successfully.")
+        print( request.session['u_image'])
     except usertable.DoesNotExist:
         query=None
     if query is not None:
-        return render(request,template_name='index.html')
+        return render(request,'index.html')
     else:
         messages.info(request,'Account does not exist!! Please sign in')
-    return render(request,template_name='signup.html')
-
+    return redirect(reverse('login'))
