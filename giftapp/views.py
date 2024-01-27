@@ -102,6 +102,9 @@ def logOutUser(request):
     request.session.pop('u_email', None)
     request.session.pop('u_id', None)
     request.session.pop('u_image', None)
+    request.session.pop('seller_email', None)
+    request.session.pop('seller_id', None)
+    request.session.pop('seller_image', None)
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
 
@@ -119,7 +122,7 @@ def checkSellerLogin(request):
     except usertable.DoesNotExist:
         query=None
     if query is not None:
-        return render(request,'index.html')
+        return redirect(reverse('base'))
     else:
         messages.info(request, 'Incorrect email or password. Please try again.')
     return redirect(reverse('login_seller'))

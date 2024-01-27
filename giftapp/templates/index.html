@@ -35,46 +35,30 @@
   .hidden {
     display: none;
   }
-  .alert {
-    position: absolute;
+  .alertStyle {
+    position: fixed;
     top:0;
-    font-size: 20px;
-    {% comment %} top: 20px; /* Adjust as needed */ {% endcomment %}
+    font-size: 15px;
     left: 50%;
+    width: 100%;
     transform: translateX(-50%);
-    padding: 15px;
-    border-radius: 5px;
-    background-color: #28a745; /* Adjust background color */
-    color: #fff; /* Adjust text color */
+    background-color: #b6ff94; /* Adjust background color */
+    color: #000; /* Adjust text color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    padding: 20px;
 }
 
-.alert.show {
+.alertStyle.show {
     display: block;
     animation: fadeInOut 5s ease-out;
-}
-
-@keyframes fadeInOut {
-    0% {
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
-    80% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
 }
 
 </style>
 
 
   <body>
-    <div class="alert alert-success hidden" id="alert">
+    <div class="alertStyle hidden" id="alert">
       <p id="innertxt"></p>
     </div>
     <!-- Main Wrapper Start -->
@@ -434,7 +418,7 @@
       <!-- Testimonial Section Start-->
       <div
         class="testimonial-section section bg-gray pt-100 pb-65"
-        style="background-image: url(img/bg/testimonial.png)"
+        style="background-image: url({% static "img/bg/testimonial.png" %})"
       >
         <div class="container">
           <!-- Section Title Start-->

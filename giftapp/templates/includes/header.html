@@ -60,7 +60,7 @@
                     </ul>
                      </li>
                       <ul>
-                        {%if request.session.u_id is not None%}
+                        {%if request.session.u_id is not None or request.session.seller_id is not None%}
                         <li><a href="/logout">Logout</a></li>
                         {%else%}
                         {%endif%}
@@ -217,11 +217,7 @@
                         {%else%}
                         <li><a href="wishlist">wishlist</a></li>
                         {%endif%}
-                        <li>
-                          <a href="under-construction"
-                            >Under Construction</a
-                          >
-                        </li>
+                      
                       </ul>
                     </li>
                     {%else%}
@@ -232,9 +228,7 @@
                         <li><a href="checkout">checkout</a></li>
                         <li><a href="wishlist">wishlist</a></li>
                         <li>
-                          <a href="under-construction"
-                            >Under Construction</a
-                          >
+                          
                         </li>
                       </ul>
                     </li>
@@ -354,7 +348,7 @@
         <!-- Header Bottom End -->
       </div>
     </div>
-    <script src="{% static "/js/vendor/jquery-1.12.0.min.js" %}"></script>
+    <script src="{% static "/js/vendor/jquery-1.12.0.min.js" %}" defer></script>
     <!-- Popper JS -->
     <script src="{% static '/js/popper.min.js' %}"></script>
     <!-- Bootstrap JS -->

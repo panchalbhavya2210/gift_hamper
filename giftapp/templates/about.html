@@ -46,7 +46,7 @@
       <!-- Page Banner Section Start-->
       <div
         class="page-banner-section section"
-        style="background-image: url(img/bg/page-banner.jpg)"
+        style="background-image: url({% static "img/bg/page-banner.jpg" %})"
       >
         <div class="container">
           <div class="row">
@@ -69,7 +69,7 @@
               <a
                 class="video-popup"
                 href="https://www.youtube.com/watch?v=7e90gBu4pas"
-                ><img src="img/about.jpg" alt=""
+                ><img src="{% static "img/about.jpg" %}" alt=""
               /></a>
             </div>
 
@@ -102,7 +102,7 @@
 
           <div class="team-wrapper row">
             <div class="single-team col-lg-3 col-md-6 col-12">
-              <img src="img/team/1.jpg" alt="team" />
+              <img src="{% static "img/team/1.jpg" %}" alt="team" />
               <div class="content">
                 <h4>Terry Soto</h4>
                 <span>CEO</span>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="single-team col-lg-3 col-md-6 col-12">
-              <img src="img/team/2.jpg" alt="team" />
+              <img src="{% static "img/team/2.jpg" %}" alt="team" />
               <div class="content">
                 <h4>Maria Lane</h4>
                 <span>Marketer</span>
@@ -118,7 +118,7 @@
             </div>
 
             <div class="single-team col-lg-3 col-md-6 col-12">
-              <img src="img/team/3.jpg" alt="team" />
+              <img src="{% static "img/team/3.jpg" %}" alt="team" />
               <div class="content">
                 <h4>Justin Evans</h4>
                 <span>developer</span>
@@ -126,7 +126,7 @@
             </div>
 
             <div class="single-team col-lg-3 col-md-6 col-12">
-              <img src="img/team/4.jpg" alt="team" />
+              <img src="{% static "img/team/4.jpg" %}" alt="team" />
               <div class="content">
                 <h4>Rose Dixon</h4>
                 <span>Designer</span>
@@ -189,22 +189,22 @@
               <div class="client-slider text-center">
                 <!-- Single Client -->
                 <div class="single-client">
-                  <img src="img/client/1.png" alt="client" />
+                  <img src="{% static "img/client/1.png" %}" alt="client" />
                 </div>
                 <div class="single-client">
-                  <img src="img/client/2.png" alt="client" />
+                  <img src="{% static "img/client/2.png" %}" alt="client" />
                 </div>
                 <div class="single-client">
-                  <img src="img/client/3.png" alt="client" />
+                  <img src="{% static "img/client/3.png" %}" alt="client" />
                 </div>
                 <div class="single-client">
-                  <img src="img/client/4.png" alt="client" />
+                  <img src="{% static "img/client/4.png" %}" alt="client" />
                 </div>
                 <div class="single-client">
-                  <img src="img/client/5.png" alt="client" />
+                  <img src="{% static "img/client/5.png" %}" alt="client" />
                 </div>
                 <div class="single-client">
-                  <img src="img/client/6.png" alt="client" />
+                  <img src="{% static "img/client/6.png" %}" alt="client" />
                 </div>
               </div>
             </div>
@@ -214,87 +214,8 @@
       <!-- Client Section End-->
 
       <!-- Footer Section Start-->
-      <div
-        class="footer-section section bg-dark"
-        style="background-image: url(img/bg/footer-bg.png)"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <!-- Footer Top Start -->
-              <div class="footer-top section pt-80 pb-50">
-                <div class="row">
-                  <!-- Footer Widget -->
-                  <div class="footer-widget col-lg-4 col-md-6 col-12 mb-40">
-                    <img
-                      class="footer-logo"
-                      src="img/footer-logo.png"
-                      alt="logo"
-                    />
-                    <p>
-                      Contrary to popular belief, Lorem Ipsum is nosimply random
-                      text. It has roots in a piece of classical Latin
-                      literature from 45 BC, making it over Lorem Ipsum is
-                      nosimply random text.
-                    </p>
-                  </div>
+      {% include 'includes/footer.html' %}
 
-                  <!-- Footer Widget -->
-                  <div class="footer-widget col-lg-2 col-md-3 col-12 mb-40">
-                    <h4 class="widget-title">Information</h4>
-
-                    <ul>
-                      <li><a href="#">About us</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Team member</a></li>
-                      <li><a href="#">Clinet</a></li>
-                      <li><a href="#">Portfolio</a></li>
-                      <li><a href="#">Contact us</a></li>
-                    </ul>
-                  </div>
-
-                  <!-- Footer Widget -->
-                  <div class="footer-widget col-lg-2 col-md-3 col-12 mb-40">
-                    <h4 class="widget-title">Categories</h4>
-
-                    <ul>
-                      <li><a href="#">Costumes</a></li>
-                      <li><a href="#">Lights</a></li>
-                      <li><a href="#">Lights</a></li>
-                      <li><a href="#">Christmas Trees</a></li>
-                      <li><a href="#">Decorations</a></li>
-                    </ul>
-                  </div>
-
-                  <!-- Footer Widget -->
-                  <div class="footer-widget col-lg-4 col-md-6 col-12 mb-40">
-                    <h4 class="widget-title">Contact Us</h4>
-
-                    <ul>
-                      <li>
-                        <span>Address:</span> ur address goes here,street
-                        Crossroad 123
-                      </li>
-                      <li>
-                        <span>Phone:</span> +99 859 658 589 . +69 587 456 25
-                      </li>
-                      <li><span>Eax:</span> +55 784 7585 . + 985 698 586</li>
-                      <li><span>Email:</span> christ@email.com</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <!-- Footer Top End -->
-
-              <!-- Footer Bottom Start -->
-              <div class="footer-bottom section text-center">
-                <p><a href="templateshub.net">Templates Hub</a></p>
-              </div>
-              <!-- Footer Bottom End -->
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- Footer Section End-->
     </div>
     <!-- Main Wrapper End -->
@@ -303,16 +224,16 @@
 ============================================ -->
 
     <!-- jQuery JS -->
-    <script src="js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="{% static '/js/vendor/jquery-1.12.0.min.js' %}"></script>
     <!-- Popper JS -->
-    <script src="js/popper.min.js"></script>
+    <script src="{% static '/js/popper.min.js' %}"></script>
     <!-- Bootstrap JS -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <!-- Plugins JS -->
-    <script src="js/plugins.js"></script>
+    <script src="{% static '/js/plugins.js' %}"></script>
     <!-- Ajax Mail JS -->
-    <script src="js/ajax-mail.js"></script>
+    <script src="{% static '/js/ajax-mail.js' %}"></script>
     <!-- Main JS -->
-    <script src="js/main.js"></script>
+    <script src="{% static '/js/main.js' %}"></script>
   </body>
 </html>
