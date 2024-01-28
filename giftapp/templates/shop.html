@@ -30,7 +30,30 @@
     <!-- Modernizer JS -->
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
 </head>
+<style>
+  .page-banner-section {
+    animation: moveBackground 20s linear infinite;
+  }
+  
+  @keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+      background-size: 100%;
 
+    }
+    50% {
+      background-position: 100% 100%;
+      background-size: 150%;
+    }
+    100% {
+      background-position: 0% 0%;
+      background-size: 100%;
+
+    }
+  }
+  
+  
+</style>
   <body>
     <!-- Main Wrapper Start -->
     <div id="main-wrapper" class="section">
@@ -42,7 +65,7 @@
       <!-- Page Banner Section Start-->
       <div
         class="page-banner-section section"
-        style="background-image: url({% static "img/bg/page-banner.jpg" %})"
+        style="background-image: url({% static "img/bg/m1.png" %})"
       >
         <div class="container">
           <div class="row">
