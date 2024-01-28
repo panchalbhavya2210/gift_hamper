@@ -871,7 +871,6 @@ textarea:-ms-input-placeholder {
   text-transform: capitalize;
   margin: 0;
   padding: 20px 0;
-  background-image: url("img/section-title-bg.png");
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -1661,6 +1660,7 @@ textarea:-ms-input-placeholder {
   z-index: -99;
   visibility: hidden;
   opacity: 0;
+  border-radius: 0 0 10px 10px;
   -webkit-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
@@ -3907,7 +3907,6 @@ textarea:-ms-input-placeholder {
   margin: 0 30px;
   position: relative;
   z-index: 9;
-  margin-bottom: -190px;
 }
 @media only screen and (max-width: 767px) {
   .contact-wrapper {

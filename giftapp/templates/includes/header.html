@@ -60,7 +60,10 @@
                     </ul>
                      </li>
                       <ul>
-                        
+                        {%if request.session.u_id is not None or request.session.seller_id is not None%}
+                        <li><a href="/logout">Logout</a></li>
+                        {%else%}
+                        {%endif%}
                         <li><a href="wishlist">Wishlist</a></li>
                         <li>
                           <a href="#" data-toggle="dropdown"
@@ -214,11 +217,7 @@
                         {%else%}
                         <li><a href="wishlist">wishlist</a></li>
                         {%endif%}
-                        <li>
-                          <a href="under-construction"
-                            >Under Construction</a
-                          >
-                        </li>
+                      
                       </ul>
                     </li>
                     {%else%}
@@ -229,14 +228,12 @@
                         <li><a href="checkout">checkout</a></li>
                         <li><a href="wishlist">wishlist</a></li>
                         <li>
-                          <a href="under-construction"
-                            >Under Construction</a
-                          >
+                          
                         </li>
                       </ul>
                     </li>
                     {%endif%}
-                    {%if request.path == "/blog" or request.path == "/blog-details"%}
+                    {% comment %} {%if request.path == "/blog" or request.path == "/blog-details"%}
                     <li class='active'>
                       <a href="blog">blog</a>
                       <ul class="sub-menu">
@@ -260,11 +257,11 @@
                         <li><a href="blog-details">blog details</a></li>
                       </ul>
                     </li>
-                    {%endif%}
+                    {%endif%} {% endcomment %}
                    
                     {%if request.path == "/signup" or request.path == "/login"%}
                     <li class='active'>
-                      <a>My account</a>
+                      <a href="">My account</a>
                       <ul class="sub-menu">
                         {%if request.path == "/signup"%}
                         <li class='active'><a href="/signup">Sign Up</a></li>
@@ -280,7 +277,7 @@
                     </li>
                     {%else%}
                     <li >
-                      <a>My account</a>
+                      <a href>My account</a>
                       <ul class="sub-menu">
                         <li><a href="/signup">Sign Up</a></li>
                         <li><a href="/login">Log In</a></li>

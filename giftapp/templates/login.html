@@ -78,22 +78,53 @@
         .form-message {
             margin-top: 15px;
         }
-        .hidden {
+        .hiddenH4 {
           opacity: 0;
         }
+        .hidden {
+          display: none;
+        }
+        .alertStyle {
+          position: fixed;
+          top:0;
+          font-size: 15px;
+          left: 50%;
+          width: 100%;
+          transform: translateX(-50%);
+          background-color: #ffa094; /* Adjust background color */
+          color: #000; /* Adjust text color */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          padding: 20px;
+      }
+      
+      .alertStyle.show {
+          display: block;
+          animation: fadeInOut 5s ease-out;
+      }
+      
+      @keyframes fadeInOut {
+          0% {
+              opacity: 0;
+          }
+          20% {
+              opacity: 1;
+          }
+          80% {
+              opacity: 1;
+          }
+          100% {
+              opacity: 0;
+          }
+      }
       
     </style>
 
-    {% if messages %}
-  <script>
-    {% for message in messages %}
-      alert("{{ message }}");
-    {% endfor %}
-    // Clear messages after displaying them
-  </script>
-{% endif %}
 
       <body>
+        <div class="alertStyle hidden" id="alert">
+          <p id="innertxt"></p>
+        </div>
         <div id="main-wrapper" class="section">
             <div class="page-banner-section section" style="background-image: url(https://images.pexels.com/photos/921290/pexels-photo-921290.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)">
               <div class="container">
@@ -107,10 +138,10 @@
           </div><!-- Page Banner Section End-->
           {% include 'includes/header.html' %}
           <div class="contact-form">
-            <h4 class="hidden">Log In</h4>
-            <form class="signup-form"  action="/loggin" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <label for="email">Your Name</label>
-                <input type="email" id="email" name="email" placeholder="Your Name" />
+            <h4 class="hiddenH4">Log In</h4>
+            <form class="signup-form"  action="/login_user" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" />
                 <label for="message">Your Password</label>
                 <input type="text" name="password" placeholder="Enter Your Password">
                 <input type="submit" class="btnSub" value="Submit"/>
@@ -134,6 +165,29 @@
         <script src="{% static '/js/ajax-mail.js' %}"></script>
         <!-- Main JS -->
         <script src="{% static '/js/main.js' %}"></script>
+        <script>
+          {% if messages %}
+          document.addEventListener("DOMContentLoaded", function () {
+            let alertId = document.getElementById("alert");
+            let innertxt = document.getElementById("innertxt");
+            alertId.classList.remove('hidden');
       
+            {% for message in messages %}
+              // Create a new element to hold the message
+              let messageElement = document.createElement("div");
+              messageElement.textContent = "{{ message }}"; // Assuming the message is a text
+      
+              // Append the message element to innertxt
+              innertxt.appendChild(messageElement);
+            {% endfor %}
+      
+            setTimeout(() => {
+              alertId.classList.add('hidden');
+              // Clear the messages after hiding the alert
+              innertxt.innerHTML = "";
+            }, 5000);
+          });
+          {% endif %}
+        </script>
 </body>
 </html>
