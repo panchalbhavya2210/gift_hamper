@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
-from .models import usertable, giftstockisttable
+from .models import *
 
 # Create your views here.
 
@@ -44,9 +44,11 @@ def registerUser(request):
         user_email = request.POST.get('email')
         user_password = request.POST.get('password')
         user_phone = request.POST.get('ph_number')
+        user_type = request.POST.get('type')
+        user_dob = request.POST.get('date')
         user_image = request.FILES['uImage']
         
-        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status=0, u_image=user_image)
+        insertData = usertable(u_name=user_name, u_email=user_email, u_password=user_password, u_phone=user_phone, u_status=0,u_type = user_type, u_image=user_image, dob=user_dob, is_verified=False, comments="")
         insertData.save()
 
         # Redirect to a success page
@@ -55,20 +57,7 @@ def registerUser(request):
     return render(request, "index.html")
 
 
-def registerSeller(request):
-    if request.method == "POST":
-        seller_name = request.POST.get('seller_name')
-        seller_email = request.POST.get('seller_email')
-        sller_ph_number = request.POST.get('seller_ph_number')
-        seller_password = request.POST.get('seller_password')
-        seller_address = request.POST.get('seller_address')
-        seller_image = request.FILES['sImage']
-        
-        insertSellerData = giftstockisttable(name=seller_name, email=seller_email, password=seller_password, phone_no=sller_ph_number, address=seller_address, stockist_image=seller_image)
-        insertSellerData.save()
-        
-        return redirect(reverse('insert_seller'))
-    return render(request, 'index.html')
+
 
 def checklogin(request):
 # +    """
@@ -108,21 +97,4 @@ def logOutUser(request):
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
 
-def checkSellerLogin(request):
-    seller_email=request.POST["email"]
-    seller_paswd=request.POST["password"]
 
-    try:
-        query=giftstockisttable.objects.get(email=seller_email,password=seller_paswd)
-        request.session['seller_email']=query.email
-        request.session['seller_id']=query.id #type:ignore
-        request.session['seller_image'] = query.stockist_image.url if query.stockist_image else None
-        messages.success(request, "Logged In Successfully.")
-        print( request.session['seller_image'])
-    except usertable.DoesNotExist:
-        query=None
-    if query is not None:
-        return redirect(reverse('base'))
-    else:
-        messages.info(request, 'Incorrect email or password. Please try again.')
-    return redirect(reverse('login_seller'))

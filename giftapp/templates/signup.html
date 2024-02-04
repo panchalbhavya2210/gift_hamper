@@ -53,7 +53,7 @@
         flex-direction: column;
     }
 
-    .contact-form input,
+    .contact-form .inputTypeField,
     .contact-form textarea {
         margin-bottom: 15px;
         padding: 10px;
@@ -61,7 +61,7 @@
         box-sizing: border-box;
     }
 
-    .contact-form input[type="submit"] {
+    .contact-form .inputTypeField[type="submit"] {
         background-color: #4CAF50;
         color: rgb(0, 0, 0);
         cursor: pointer;
@@ -69,7 +69,7 @@
         margin-top: 10px;
     }
 
-    .contact-form input[type="submit"]:hover {
+    .contact-form .inputTypeField[type="submit"]:hover {
         background-color: #45a049;
     }
 
@@ -79,7 +79,10 @@
     .hidden {
       opacity: 0;
     }
-  
+    .contact-form form input[type="radio"] {
+      width: 15px;
+      height: 15px;
+    }
   
 </style>
   <body>
@@ -102,18 +105,31 @@
         <h4 class="hidden">/</h4>
         <form class="signup-form"  method="post" action="/insert" enctype="multipart/form-data" onsubmit="return validateSignUp(event);">{% csrf_token %}
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" />
+            <input class="inputTypeField" type="text" id="name" name="name" placeholder="Your Name" />
             <label for="email">Your Email</label>
-            <input type="text" id="email" name="email" placeholder="Your Email" />
+            <input class="inputTypeField" type="text" id="email" name="email" placeholder="Your Email" />
             <label for="email">Your Phone</label>
-            <input type="tel" id="ph" name="ph_number" placeholder="Your Phone No." />
+            <input class="inputTypeField" type="tel" id="ph" name="ph_number" placeholder="Your Phone No." />
             <label for="message">Your Password</label>
-            <input type="text" name="password" id="password" placeholder="Enter Your Password">
-            <input type="file" name="uImage" id="user_imagee">
+            <input class="inputTypeField" type="text" name="password" id="password" placeholder="Enter Your Password">
+            <label for="date">Your Birthdate</label>
+            <input type="date" name="date">
+            <input class="inputTypeField" type="file" name="uImage" id="user_imagee">
+            <div class="form-check">
+              <input name="type" class="form-check-input" type="radio"  id="flexRadioDefault1" value="buyer" checked>
+              <label class="form-check-label" for="flexRadioDefault1">
+                I Am Buyer
+              </label>
+            </div>
+            <div class="form-check">
+              <input name="type" class="form-check-input" type="radio" value="seller" id="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
+                I Am Seller
+              </label>
+            </div>
             <input type="submit" class="btnSub" value="Submit"/>
         </form>
         <p class="form-message"></p>
-        <p>Craft. Sell. Thrive.  <a href="/register_seller">Join as a Seller Now!</a></p>
 
         <div class="hidden alert alert-warning" id="warnBlock" role="alert">
           <p id="alertUser"></p>

@@ -30,13 +30,28 @@
     <!-- Modernizer JS -->
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
   </head>
-
+  <style>
+    .objectImg{
+      border-radius: 100%;
+      cursor: pointer;
+      object-fit: cover;
+    }
+    .account-menu ul {
+      display: flex;
+      align-items: center;
+    }
+    
+    .account-menu ul li {
+      margin-right: 5px; /* Adjust margin as needed */
+    }
+    
+  </style>
   <body>
     <div id="main-wrapper" class="section">
 
     <div class="header-section section">
         <!-- Header Top Start -->
-        <div class="header-top">
+        <div class="account-menu header-top">
           <div class="container">
             <div class="row">
               <div class="col">
@@ -60,8 +75,9 @@
                     </ul>
                      </li>
                       <ul>
-                        {%if request.session.u_id is not None or request.session.seller_id is not None%}
+                        {%if request.session.u_id is not None%}
                         <li><a href="/logout">Logout</a></li>
+                        
                         {%else%}
                         {%endif%}
                         <li><a href="wishlist">Wishlist</a></li>
@@ -70,7 +86,7 @@
                             ><i class="fa fa-shopping-cart"></i
                             ><span class="num">2</span></a
                           >
-
+                      
                           <!-- Mini Cart -->
                           <div class="mini-cart-brief dropdown-menu text-left">
                             <!-- Cart Products -->
@@ -127,7 +143,14 @@
                               <a href="checkout">Check out</a>
                             </div>
                           </div>
+                      
                         </li>
+                        <li>
+                          {%if request.session.u_id is not None%}
+                          <img class="objectImg" src={{request.session.u_image}} alt="" width="50" height="50">
+                          {%else%}
+                          {%endif%}
+                         </li>
                       </ul>
                     </div>
                   </div>
@@ -292,33 +315,7 @@
 
                    
 
-                    {%if request.path == '/register_seller' or request.path == '/login_seller'%}
-                    <li class='active'>
-                      <a href=''>Seller</a>
-                      <ul class="sub-menu">
-                        <li><a href="/under-construction">Account Details</a></li>
-                        {%if request.path == "/register_seller"%}
-                        <li class='active'><a href="/register_seller">Sign Up</a></li>
-                        {%else%}
-                        <li><a href="/register_seller">Sign Up</a></li>
-                        {%endif%}
-                        {%if request.path == "/login_seller"%}
-                        <li class='active'><a href="/login_seller">log in</a></li>
-                        {%else%}
-                        <li><a href="/login_seller">log in</a></li>
-                        {%endif%}
-                      </ul>
-                    </li>
-                    {%else%}
-                    <li>
-                      <a href=''>Seller</a>
-                      <ul class="sub-menu">
-                        <li><a href="/under-construction">Account Details</a></li>
-                        <li><a href="/register_seller">Sign Up</a></li>
-                        <li><a href="/login_seller">Log In</a></li>
-                      </ul>
-                    </li>
-                    {%endif%}
+                   
                   </ul>
                 </nav>
 

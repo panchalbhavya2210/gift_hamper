@@ -10,7 +10,7 @@ ORDER_STATUS = ((0, "Delivered"), (1, "Pending"))
 PAYMENT_STATUS = ((0, "Success"), (1, "Failed"))
 RETURN_STATUS = ((0, "Returned"), (1, "Processing"))
 COMPLAINT_STATUS = ((0, "Solved"), (1, "Pending"))
-
+USER_TYPE = ((0, "User"), (1, "Seller"))
 
 # Create your models here.
 
@@ -21,9 +21,18 @@ class usertable(models.Model):
     u_phone=models.BigIntegerField()
     u_status=models.IntegerField(choices=U_STATUS, default=0)
     u_image=models.ImageField()
+    u_type=models.CharField(max_length=10)
+    dob=models.DateField()
+    is_verified=models.BooleanField(default=False)
+    comments=models.CharField(max_length=100, default="")
 
     def user_photo(self):
        return mark_safe('<img src="{}" width="100"/>'.format(self.u_image.url))
+   
+    user_photo.allow_tags = True
+    
+    def __str__(self) -> str:
+        return self.u_name
 
 class userdeatiltable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
@@ -31,22 +40,13 @@ class userdeatiltable(models.Model):
     u_address=models.TextField()
     
 
-class giftstockisttable(models.Model):
-    name=models.CharField(max_length=15)
-    password=models.CharField(max_length=15)
-    email=models.CharField(max_length=20)
-    phone_no=models.IntegerField()
-    address=models.TextField(max_length=40)
-    stockist_image=models.ImageField()
-    def Stockist_Image(self):
-           return mark_safe('<img src="{}" width="100"/>'.format(self.stockist_image.url))
 
 class categorytable(models.Model):
     category_name=models.CharField(max_length=15)
 
 class producttable(models.Model):
     catid = models.ForeignKey(categorytable, on_delete=models.CASCADE)
-    stockist_id = models.ForeignKey(giftstockisttable, on_delete=models.CASCADE)
+    stockist_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     p_name=models.CharField(max_length=15)
     p_description=models.CharField(max_length=25)
     p_image=models.ImageField(upload_to='photos')
@@ -69,7 +69,6 @@ class cardtable(models.Model):
     cvv=models.IntegerField()
     expiry_date=models.DateField()
     card_number=models.BigIntegerField()
-
 class ordertable(models.Model):
     user_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     cart_id = models.ForeignKey(carttable, on_delete=models.CASCADE)

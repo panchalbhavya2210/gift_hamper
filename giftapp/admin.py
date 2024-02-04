@@ -1,20 +1,20 @@
 from re import A
 from django.contrib import admin
-from .models import feedbacktable, usertable,userdeatiltable,giftstockisttable,feedbacktable, categorytable, producttable, carttable, cardtable, ordertable, paymenttable ,returnproducttable, complaintable
+from .models import *
 # Register your models here.
 
 
 class showUser(admin.ModelAdmin):
-    list_display = ["u_name", "u_email","u_password", "u_phone", "u_status", "user_photo"]
+    list_display = ["u_name", "u_email","u_password", "u_phone", "u_status","u_type", "user_photo", "dob", "is_verified", "comments"]
 admin.site.register(usertable, showUser)
 
 class showUserDetail(admin.ModelAdmin):
     list_display = ["u_id", "dob", "u_address"]
 admin.site.register(userdeatiltable, showUserDetail)
 
-class showGiftStockist(admin.ModelAdmin):
-    list_display = ["name", "email","password", "phone_no", "address", "Stockist_Image"]
-admin.site.register(giftstockisttable, showGiftStockist)
+# class showGiftStockist(admin.ModelAdmin):
+#     list_display = ["name", "email","password", "phone_no", "address", "Stockist_Image"]
+# admin.site.register(giftstockisttable, showGiftStockist)
 
 class showCategory(admin.ModelAdmin):
     list_display = ["category_name"]
