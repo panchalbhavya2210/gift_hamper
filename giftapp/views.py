@@ -74,9 +74,7 @@ def checklogin(request):
         query=usertable.objects.get(u_email=useremail,u_password=userpaswd)
         request.session['u_email']=query.u_email 
         request.session['u_id']=query.id #type:ignore
-        request.session['u_image'] = query.u_image.url if query.u_image else None
         messages.success(request, "Logged In Successfully.")
-        print( request.session['u_image'])
     except usertable.DoesNotExist:
         query=None
     if query is not None:
@@ -90,10 +88,6 @@ def logOutUser(request):
     # Clear the relevant session variables for logout
     request.session.pop('u_email', None)
     request.session.pop('u_id', None)
-    request.session.pop('u_image', None)
-    request.session.pop('seller_email', None)
-    request.session.pop('seller_id', None)
-    request.session.pop('seller_image', None)
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
 
