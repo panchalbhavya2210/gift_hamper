@@ -295,7 +295,21 @@
                     {% else %}
                     <li ><a  href="/contact">Contact</a></li>
                     {% endif %}
+                    {% if request.path == "/addproduct"%}
+                    <li class="active">
+                      <a href="">
+                  rand milegi
 
+                      </a>
+                    </li>
+                    {%else%}
+                    <li>
+                      <a href="">
+                  rand milegi
+
+                      </a>
+                    </li>
+                    {%endif%}
                    
 
                    
