@@ -31,19 +31,7 @@
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
   </head>
   <style>
-    .objectImg{
-      border-radius: 100%;
-      cursor: pointer;
-      object-fit: cover;
-    }
-    .account-menu ul {
-      display: flex;
-      align-items: center;
-    }
-    
-    .account-menu ul li {
-      margin-right: 5px; /* Adjust margin as needed */
-    }
+ 
     
   </style>
   <body>
@@ -145,12 +133,7 @@
                           </div>
                       
                         </li>
-                        <li>
-                          {%if request.session.u_id is not None%}
-                          <img class="objectImg" src={{request.session.u_image}} alt="" width="50" height="50">
-                          {%else%}
-                          {%endif%}
-                         </li>
+                       
                       </ul>
                     </div>
                   </div>

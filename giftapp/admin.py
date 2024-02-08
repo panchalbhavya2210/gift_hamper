@@ -5,16 +5,8 @@ from .models import *
 
 
 class showUser(admin.ModelAdmin):
-    list_display = ["u_name", "u_email","u_password", "u_phone", "u_status","u_type", "user_photo", "dob", "is_verified", "comments"]
+    list_display = ["u_name", "u_email","u_password", "u_phone", "u_status","u_type", "user_photo", "dob", "is_verified", "comments", "u_address"]
 admin.site.register(usertable, showUser)
-
-class showUserDetail(admin.ModelAdmin):
-    list_display = ["u_id", "dob", "u_address"]
-admin.site.register(userdeatiltable, showUserDetail)
-
-# class showGiftStockist(admin.ModelAdmin):
-#     list_display = ["name", "email","password", "phone_no", "address", "Stockist_Image"]
-# admin.site.register(giftstockisttable, showGiftStockist)
 
 class showCategory(admin.ModelAdmin):
     list_display = ["category_name"]

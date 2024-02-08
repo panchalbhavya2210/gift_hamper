@@ -25,6 +25,7 @@ class usertable(models.Model):
     dob=models.DateField()
     is_verified=models.BooleanField(default=False)
     comments=models.CharField(max_length=100, default="")
+    u_address=models.TextField(default="")
 
     def user_photo(self):
        return mark_safe('<img src="{}" width="100"/>'.format(self.u_image.url))
@@ -33,13 +34,6 @@ class usertable(models.Model):
     
     def __str__(self) -> str:
         return self.u_name
-
-class userdeatiltable(models.Model):
-    u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
-    dob=models.DateField()
-    u_address=models.TextField()
-    
-
 
 class categorytable(models.Model):
     category_name=models.CharField(max_length=15)
