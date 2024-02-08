@@ -18,4 +18,5 @@ urlpatterns = [
     path("wishlist", views.wishList, name="wishlist"),
     path("blog", views.blogPage, name="blog"),
     path("blog-details", views.blogList, name="blog-details"),
+    path("addproduct", views.addproduct, name="addproduct")
 ]

@@ -37,6 +37,9 @@ def blogPage(request):
     return render(request, "blog.html")
 def blogList(request):
     return render(request, "blog-details.html")
+def addproduct(request):
+    return render(request, "addproduct.html")
+
 
 def registerUser(request):
     if request.method == "POST":
@@ -88,9 +91,6 @@ def logOutUser(request):
     # Clear the relevant session variables for logout
     request.session.pop('u_email', None)
     request.session.pop('u_id', None)
-<<<<<<< HEAD
     request.session.pop('u_image', None)
-=======
->>>>>>> ca67aa09cfa35f2138f658c869bb6af229cea5df
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
