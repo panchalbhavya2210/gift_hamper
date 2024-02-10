@@ -1,3 +1,4 @@
+from email.mime import base
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib import messages
@@ -37,7 +38,7 @@ def blogPage(request):
     return render(request, "blog.html")
 def blogList(request):
     return render(request, "blog-details.html")
-def addproduct(request):
+def addproductpage(request):
     return render(request, "addproduct.html")
 def manageproduct(request):
     return render(request, "manageproduct.html")
@@ -96,3 +97,18 @@ def logOutUser(request):
     request.session.pop('u_image', None)
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
+
+
+def insertproductdata(request):
+    if request.method == 'POST':
+        productname = request.POST.get("pname")
+        productdescription = request.POST.get("pdesc")
+        productimage = request.POST.get("pimage")
+        productquantity = request.POST.get("pquantity")
+        productprice = request.POST.get("pprice")
+        productstatus = request.POST.get("pstatus")
+
+        insertdata= producttable(p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        insertdata.save()
+    return redirect(reverse('base'))
+

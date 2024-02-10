@@ -103,7 +103,7 @@
       <!-- Header Section Start -->
       <div class="contact-form">
         <h4 class="hidden">/</h4>
-        <form class="signup-form"  method="post" action="/insert" enctype="multipart/form-data" onsubmit="return validateSignUp(event);">{% csrf_token %}
+        <form class="signup-form"  method="post" action="/addproduct" enctype="multipart/form-data" onsubmit="return validateSignUp(event);">{% csrf_token %}
             <label for="name">Your Name</label>
             <input class="inputTypeField" type="text" id="name" name="name" placeholder="Your Name" />
             <label for="email">Your Email</label>

@@ -3,6 +3,7 @@ from random import choices
 from django.db import models
 from django.utils.safestring import mark_safe
 
+
 U_STATUS = ((0, "Active"), (1, "Inactive"))
 PRODUCT_STATUS = ((0, "Available"), (1, "Not Available"))
 CART_STATUS = ((0, "Success"), (1, "Pending"))
