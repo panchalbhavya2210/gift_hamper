@@ -19,8 +19,7 @@ urlpatterns = [
     path("blog", views.blogPage, name="blog"),
     path("blog-details", views.blogList, name="blog-details"),
     path("addproduct", views.addproductpage, name="addproduct"),
-    path('insertproductdata', views.insertproductdata, name="insertproductdata")
-    path("addproduct", views.addproduct, name="addproduct"),
+    path('insertproductdata', views.insertproductdata, name="insertproductdata"),
+    path("addproduct", views.addproductpage, name="addproduct"),
     path("manageproduct", views.manageproduct, name="manageproduct" )
-
-]
+ ]

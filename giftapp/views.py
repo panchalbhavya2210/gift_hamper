@@ -98,6 +98,7 @@ def logOutUser(request):
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
 
+#addproduct
 
 def insertproductdata(request):
     if request.method == 'POST':
@@ -107,8 +108,8 @@ def insertproductdata(request):
         productquantity = request.POST.get("pquantity")
         productprice = request.POST.get("pprice")
         productstatus = request.POST.get("pstatus")
-
-        insertdata= producttable(p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        
+        insertdata = producttable(catid=categorytable,stockist_id=1,p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
     return redirect(reverse('base'))
 

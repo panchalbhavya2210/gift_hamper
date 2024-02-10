@@ -37,7 +37,9 @@ class usertable(models.Model):
         return self.u_name
 
 class categorytable(models.Model):
-    category_name=models.CharField(max_length=15)
+    category_name=models.CharField(max_length=25)
+    
+
 
 class producttable(models.Model):
     catid = models.ForeignKey(categorytable, on_delete=models.CASCADE)
