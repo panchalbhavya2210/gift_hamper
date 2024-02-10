@@ -40,6 +40,8 @@ def blogList(request):
     return render(request, "blog-details.html")
 def addproductpage(request):
     return render(request, "addproduct.html")
+def manageproduct(request):
+    return render(request, "manageproduct.html")
 
 
 def registerUser(request):

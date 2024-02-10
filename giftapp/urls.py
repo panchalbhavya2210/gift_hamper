@@ -18,6 +18,11 @@ urlpatterns = [
     path("wishlist", views.wishList, name="wishlist"),
     path("blog", views.blogPage, name="blog"),
     path("blog-details", views.blogList, name="blog-details"),
+<<<<<<< HEAD
     path("addproduct", views.addproductpage, name="addproduct"),
     path('insertproductdata', views.insertproductdata, name="insertproductdata")
+=======
+    path("addproduct", views.addproduct, name="addproduct"),
+    path("manageproduct", views.manageproduct, name="manageproduct" )
+>>>>>>> 3571759aca507f45499eefc9594bbb0f74a1a60f
 ]
