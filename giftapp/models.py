@@ -1,5 +1,3 @@
-from email.policy import default
-from random import choices
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -39,20 +37,19 @@ class usertable(models.Model):
 class categorytable(models.Model):
     category_name=models.CharField(max_length=25)
     
-
-
 class producttable(models.Model):
     catid = models.ForeignKey(categorytable, on_delete=models.CASCADE)
     stockist_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     p_name=models.CharField(max_length=15)
     p_description=models.CharField(max_length=25)
-    p_image=models.ImageField(upload_to='photos')
+    p_image=models.ImageField()
     p_quantity=models.IntegerField()
     p_price=models.BigIntegerField()
     p_status=models.IntegerField(choices=PRODUCT_STATUS, default=0)
-    def P_Image(self):
-        return mark_safe('<img src={} width="100"/>'.format(self.p_image.url))
 
+    def product_photo(self):
+       return mark_safe('<img src="{}" width="100"/>'.format(self.p_image.url))
+   
 class carttable(models.Model):
     userid = models.ForeignKey(usertable, on_delete=models.CASCADE)
     product_id = models.ForeignKey(producttable, on_delete=models.CASCADE)

@@ -149,7 +149,10 @@
             </div>
           </div>
           <!-- Section Title End-->
-
+          {% for prodData in data %}
+            <p></p>
+            <img src="/media/{{prodData.p_image}}" alt="" srcset="" width="50" height="50">
+          {% endfor %}
           <!-- Product Wrapper Start-->
           <div class="row">
             <!-- Product Start-->

@@ -1,5 +1,5 @@
-from email.mime import base
-from django.shortcuts import render, redirect
+from webbrowser import get
+from django.shortcuts import render, redirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
 from .models import *
@@ -7,7 +7,9 @@ from .models import *
 # Create your views here.
 
 def viewPage(request):
-    return render(request, "base.html")
+    prodData = producttable.objects.all()
+    
+    return render(request, "base.html", {'data':prodData})
 def signUp(request):
     return render(request, "signup.html")
 def login(request):
@@ -39,7 +41,8 @@ def blogPage(request):
 def blogList(request):
     return render(request, "blog-details.html")
 def addproductpage(request):
-    return render(request, "addproduct.html")
+    categData = categorytable.objects.all()
+    return render(request, "addproduct.html", {'data':categData})
 def manageproduct(request):
     return render(request, "manageproduct.html")
 
@@ -80,6 +83,7 @@ def checklogin(request):
         query=usertable.objects.get(u_email=useremail,u_password=userpaswd)
         request.session['u_email']=query.u_email 
         request.session['u_id']=query.id #type:ignore
+        print(request.session['u_id'])
         messages.success(request, "Logged In Successfully.")
     except usertable.DoesNotExist:
         query=None
@@ -91,25 +95,31 @@ def checklogin(request):
 
 
 def logOutUser(request):
-    # Clear the relevant session variables for logout
     request.session.pop('u_email', None)
     request.session.pop('u_id', None)
     request.session.pop('u_image', None)
     messages.success(request, "Logged out successfully.")
     return redirect(reverse('base'))
 
-#addproduct
+
 
 def insertproductdata(request):
+# +    """
+# +    A function to insert product data using the request object.
+# +    """
     if request.method == 'POST':
         productname = request.POST.get("pname")
         productdescription = request.POST.get("pdesc")
-        productimage = request.POST.get("pimage")
+        productimage = request.FILES["pimage"]
         productquantity = request.POST.get("pquantity")
         productprice = request.POST.get("pprice")
         productstatus = request.POST.get("pstatus")
-        
-        insertdata = producttable(catid=categorytable,stockist_id=1,p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        cat_id = request.POST.get("category")
+      
+        category_instance = get_object_or_404(categorytable, id=cat_id)
+        stockist_id=43
+        stockist_instance = get_object_or_404(usertable, id=stockist_id)
+        insertdata = producttable(catid=category_instance,stockist_id=stockist_instance,p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
     return redirect(reverse('base'))
 
