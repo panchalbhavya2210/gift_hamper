@@ -96,3 +96,8 @@ class complaintable(models.Model):
     comment=models.TextField()
     complain_status=models.IntegerField(choices=COMPLAINT_STATUS)
     complain_date=models.DateField()
+    
+class wishlist(models.Model):
+    u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
+    p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)

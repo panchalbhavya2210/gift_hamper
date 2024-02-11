@@ -44,3 +44,8 @@ admin.site.register(feedbacktable, showFeedback)
 class showComplaint(admin.ModelAdmin):
     list_display = ["u_id", "comment", "complain_status", "complain_date"]
 admin.site.register(complaintable, showComplaint)
+
+
+class showWishList(admin.ModelAdmin):
+    list_display = ["u_id", "p_id", "created_at"]
+admin.site.register(wishlist, showWishList)

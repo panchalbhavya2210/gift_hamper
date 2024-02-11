@@ -55,7 +55,7 @@
             </div>
         </div>
     </div><!-- Page Banner Section End-->
-    
+   
        
     <!-- Wishlist Section Start-->
     <div class="wishlist-section section pt-120 pb-90">
@@ -81,7 +81,7 @@
                             
                             <!-- Table Body -->
                             <tbody>
-                                <tr>
+                                {% comment %} <tr>
                                     <td><span class="cart-number">1</span></td>
                                     <td><a href="#" class="cart-pro-image"><img src="{% static "img/product/1.jpg" %}" alt="" /></a></td>
                                     <td><a href="#" class="cart-pro-title">Holiday Candle</a></td>
@@ -89,16 +89,27 @@
                                     <td><p class="cart-pro-price">$104.99</p></td>
                                     <td><button class="wl-add-cart-btn">add to cart</button></td>
                                     <td><button class="cart-pro-remove"><i class="fa fa-trash-o"></i></button></td>
-                                </tr>
+                                </tr> {% endcomment %}
+                                {% for wishData in data %}
                                 <tr>
-                                    <td><span class="cart-number">2</span></td>
-                                    <td><a href="#" class="cart-pro-image"><img src="{% static "img/product/2.jpg" %}" alt="" /></a></td>
-                                    <td><a href="#" class="cart-pro-title">Christmas Tree</a></td>
-                                    <td><p class="stock in-stock">in stock</p></td>
-                                    <td><p class="cart-pro-price">$85.99</p></td>
+                                    <td><span class="cart-number">{{forloop.counter}}</span></td>
+                                    <td><a href="#" class="cart-pro-image"><img src="/media/{{wishData.p_id.p_image}}" alt="" /></a></td>
+                                    <td><a href="#" class="cart-pro-title">{{wishData.p_id.p_name}}</a></td>
+                                    <td><p class="stock in-stock">
+                                        {% if wishData.p_id.p_quantity <= 0 %}
+                                            not in stock
+                                        {%elif wishData.p_id.p_quantity <= 15 %}
+                                            hurry up, few left!
+                                        {%else%}
+                                            in stock
+                                        {% endif %}
+                                    </p></td>
+                                    <td><p class="cart-pro-price">₹ {{wishData.p_id.p_price}}</p></td>
                                     <td><button class="wl-add-cart-btn">add to cart</button></td>
                                     <td><button class="cart-pro-remove"><i class="fa fa-trash-o"></i></button></td>
-                                </tr>
+                                </tr> 
+                                {% endfor %}
+                               
                             </tbody>
                         </table>
                     </div>

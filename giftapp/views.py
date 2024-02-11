@@ -37,7 +37,10 @@ def shopPage(request):
 def underConsPage(request):
     return render(request, "under-construction.html")
 def wishList(request):
-    return render(request, "wishlist.html")
+    # print(request.session.get('u_id'))
+    dataOfWish = wishlist.objects.filter(u_id=request.session.get('u_id'))
+    print(dataOfWish)
+    return render(request, "wishlist.html", {'data':dataOfWish})
 def blogPage(request):
     return render(request, "blog.html")
 def blogList(request):
@@ -125,5 +128,12 @@ def insertproductdata(request):
         stockist_instance = get_object_or_404(usertable, id=stockist_id)
         insertdata = producttable(catid=category_instance,stockist_id=stockist_instance,p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
+    return redirect(reverse('base'))
+
+def addToWishList(request, id):
+    product = get_object_or_404(producttable, id=id)
+    user = get_object_or_404(usertable, id=request.session.get('u_id'))
+    insertdata = wishlist(p_id=product, u_id=user)
+    insertdata.save()
     return redirect(reverse('base'))
 
