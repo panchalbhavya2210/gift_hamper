@@ -1,3 +1,4 @@
+from ast import Delete
 from webbrowser import get
 from django.shortcuts import render, redirect,get_object_or_404
 from django.urls import reverse
@@ -142,3 +143,8 @@ def deleteWishlistItem(request, id):
     deleteItem = wishlist.objects.get(id=id)
     deleteItem.delete()
     return redirect('wishlist')
+
+def deleteproductdetail(request, id):
+    deleteItem = producttable.objects.get(id=id)
+    deleteItem.delete()
+    return redirect('manageproduct')
