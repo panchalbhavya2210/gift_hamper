@@ -31,8 +31,29 @@
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
   </head>
   <style>
- 
-    
+    .user-menu {
+      display: flex;
+      align-items: center;
+    }
+    .user-menu ul {
+      display: flex;
+      align-items: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .user-menu ul li {
+      margin-left: 10px;
+    }
+    .user-menu .cart-delete {
+      color: red;
+    }
+    .u_image {
+      width: 50px; /* Adjust as needed */
+      height: 50px; /* Adjust as needed */
+      border-radius: 50%; /* Make it circular */
+      object-fit: cover;
+    }
   </style>
   <body>
     <div id="main-wrapper" class="section">
@@ -58,7 +79,7 @@
                     </div>
 
                     <!-- Account Menu -->
-                    <div class="account-menu col-md-4 col-12">
+                    <div class="account-menu user-menu col-md-4 col-12">
                      
                     </ul>
                      </li>
@@ -133,7 +154,12 @@
                           </div>
                       
                         </li>
-                       
+                        {%if user_data is not None%}
+                        <li>
+                          <img src="/media/{{user_data.u_image}}" class="u_image" alt="" srcset="">
+                         </li>
+                         {%else%}
+                         {%endif%}
                       </ul>
                     </div>
                   </div>
@@ -166,36 +192,15 @@
                     {% else %}
                     <li ><a  href="/">Home</a></li>
                     {% endif %}
-                    {% if request.path == "/shop" or request.path == "/product-details" %}
+                    {% if request.path == "/shop" %}
                     <li class="active">
                       <a href="shop" class="active">shop</a>
-                      <ul class="sub-menu">
-                        {% if request.path == "/shop" %}
-                        <li class='active'><a href="shop">shop page</a></li>
-                        {%else%}
-                        <li><a href="shop">shop page</a></li>
-                        {%endif%}
-                        {% if request.path == "/product-details" %}
-                        <li class="active">
-                          <a href="product-details">product details</a>
-                        </li>
-                        {%else%}
-                        <li>
-                          <a href="product-details">product details</a>
-                        </li>
-                        {%endif%}
-                       
-                      </ul>
+                      
                     </li>
                     {%else%}
                     <li>
                       <a href="shop">shop</a>
-                      <ul class="sub-menu">
-                        <li><a href="shop">shop page</a></li>
-                        <li>
-                          <a href="product-details">product details</a>
-                        </li>
-                      </ul>
+                    
                     </li>
                     {%endif%}
                     {% if request.path == "/about" %}
@@ -295,20 +300,7 @@
                     {% else %}
                     <li ><a  href="/contact">Contact</a></li>
                     {% endif %}
-                    {% if request.path == "/addproduct"%}
-                    <li class="active">
-                      <a href="">
-
-                      </a>
-                    </li>
-                    {%else%}
-                    <li>
-                      <a href="">
-                  Manage Products
-
-                      </a>
-                    </li>
-                    {%endif%}
+                   
                    
 
                    

@@ -33,7 +33,6 @@ def prodDetails(request, id):
     return render(request, "product-details.html", {'data':fetchProduct})
 def shopPage(request):
     prodData = producttable.objects.all()
-    
     return render(request, "shop.html", {'data':prodData})
 def underConsPage(request):
     return render(request, "under-construction.html")
@@ -96,6 +95,7 @@ def checklogin(request):
     else:
         messages.info(request, 'Incorrect email or password. Please try again.')
     return redirect(reverse('login'))
+
 
 
 def logOutUser(request):
