@@ -93,8 +93,8 @@
                                 {% for wishData in data %}
                                 <tr>
                                     <td><span class="cart-number">{{forloop.counter}}</span></td>
-                                    <td><a href="#" class="cart-pro-image"><img src="/media/{{wishData.p_id.p_image}}" alt="" /></a></td>
-                                    <td><a href="#" class="cart-pro-title">{{wishData.p_id.p_name}}</a></td>
+                                    <td><a href="product-details/{{wishData.p_id.id}}" class="cart-pro-image"><img src="/media/{{wishData.p_id.p_image}}" alt="" /></a></td>
+                                    <td><a href="product-details/{{wishData.p_id.id}}" class="cart-pro-title">{{wishData.p_id.p_name}}</a></td>
                                     <td><p class="stock in-stock">
                                         {% if wishData.p_id.p_quantity <= 0 %}
                                             not in stock
@@ -106,7 +106,11 @@
                                     </p></td>
                                     <td><p class="cart-pro-price">₹ {{wishData.p_id.p_price}}</p></td>
                                     <td><button class="wl-add-cart-btn">add to cart</button></td>
-                                    <td><button class="cart-pro-remove"><i class="fa fa-trash-o"></i></button></td>
+                                    <td>
+                                        <a href="deletewishlistitem/{{wishData.p_id.id}}">
+                                            <button class="cart-pro-remove"><i class="fa fa-trash-o"></i></button>
+                                        </a>
+                                    </td>
                                 </tr> 
                                 {% endfor %}
                                

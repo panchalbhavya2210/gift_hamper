@@ -137,3 +137,8 @@ def addToWishList(request, id):
     insertdata.save()
     return redirect(reverse('base'))
 
+
+def deleteWishlistItem(request, id):
+    deleteItem = wishlist.objects.filter(id=id)
+    deleteItem.delete()
+    return render(request, "wishlist.html")
