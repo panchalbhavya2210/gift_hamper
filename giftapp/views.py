@@ -32,7 +32,9 @@ def prodDetails(request, id):
     fetchProduct = producttable.objects.get(id=id)
     return render(request, "product-details.html", {'data':fetchProduct})
 def shopPage(request):
-    return render(request, "shop.html")
+    prodData = producttable.objects.all()
+    
+    return render(request, "shop.html", {'data':prodData})
 def underConsPage(request):
     return render(request, "under-construction.html")
 def wishList(request):
