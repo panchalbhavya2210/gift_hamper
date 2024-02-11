@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manage Product • GiftPortal</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Favicon -->
@@ -31,26 +31,22 @@
     <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
 </head>
   <style>
-    img {
-      height: 60%;
-      width: 60%;
+    .imageProd{
+      height: 30%;
+      width: 30%;
+      border-radius: 10px;
     }
 
     table {
-      border-collapse: collapse;
-      width: 300px; 
       border: 2px solid grey; 
       border-radius: 15px;
-      border-radius: 100px; /
-      overflow: hidden; /
-
     }
-      th {
+    th {
         noborder : 2px solid gray;
         background-color: #f2f2f2;
-      }
-  
-   
+    }
+    
+     
     .contact-form {
         text-align: left;
         max-width: 500px;
@@ -112,7 +108,7 @@
           <div class="row">
               <!-- Page Title Start -->
               <div class="page-title text-center col">
-                  <h1>Manage Product Detail</h1>
+                  <h1>Manage Product</h1>
               </div><!-- Page Title End -->
           </div>
       </div>
@@ -123,32 +119,28 @@
       
     <div class="table-responsive">
       <br>
-      <table class="table text-center ">
+      <table class="table text-center">
         <thead>
           <tr>
-            <th>Product Name</th>
-            <th>Product price</th>
-            <th>Product Description</th>
-            <th>Product Image</th>
-            <th colspan="2">Action</th>
+            <th style="width: 20%;">Product Name</th>
+            <th style="width: 15%;">Product Price</th>
+            <th style="width: 35%;">Product Description</th>
+            <th style="width: 20%;">Product Image</th>
+            <th colspan="2" style="width: 10%;">Action</th>
           </tr>
         </thead>
-          <tr>
-            <td>Holiday Candle</td>
-            <td>$38</td>
-            <td>There are many variations of passages of Lorem Ipsum avaable,majority have suffered alteration in some form, by injected humour, or rdomised words which don't look even slightly believable.</td>
-            <td><img src="{% static '/img/product/1.jpg'  %} "</td>
-            <td><a href="#" class="btn bg-success text-white">Edit</a></td>
-            <td><a href="deleteproduct/{{data.id}}" class="btn bg-danger text-white">Delete</a></td>
-          </tr>
-
+        {% for productData in data %}
+        <tr>
+          <td style="width: 20%;">{{ productData.p_name }}</td>
+          <td style="width: 15%;">₹ {{ productData.p_price }}</td>
+          <td style="width: 35%;" class="description_cell">{{ productData.p_description }}</td>
+          <td style="width: 20%;"><img src="media/{{ productData.p_image }}" class="imageProd" /></td>
+          <td style="width: 5%;"><a href="#" class="btn bg-success text-white">Edit</a></td>
+          <td style="width: 5%;"><a href="deleteproduct/{{ productData.id }}" class="btn bg-danger text-white">Delete</a></td>
+        </tr>
+        {% endfor %}
       </table>
-
-
-
-
-
-    
+      
   </div>
 </div>
   {% include 'includes/footer.html' %}

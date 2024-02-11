@@ -66,9 +66,9 @@
                 
                 <!-- Product Image & Thumbnail Start -->
                 <div class="col-lg-7 col-12 mb-30">
-                   
+                   {% comment %} Previous Image slider MAIN DONT REMOVE {% endcomment %}
                     <!-- Product Thumbnail -->
-                    <div class="single-product-thumbnail product-thumbnail-slider float-left">
+                    {% comment %} <div class="single-product-thumbnail product-thumbnail-slider float-left">
                         <div class="single-thumb"><img src={% static "img/product-details/thumb-1.jpg"%} alt=""></div>
                         <div class="single-thumb"><img src={% static "img/product-details/thumb-2.jpg"%} alt=""></div>
                         <div class="single-thumb"><img src={% static "img/product-details/thumb-3.jpg"%} alt=""></div>
@@ -81,6 +81,14 @@
                         <div class="single-image"><img src={% static "img/product-details/2.jpg" %} alt=""></div>
                         <div class="single-image"><img src={% static "img/product-details/3.jpg" %} alt=""></div>
                         <div class="single-image"><img src={% static "img/product-details/4.jpg" %} alt=""></div>
+                    </div> {% endcomment %}
+                    <div class="single-product-thumbnail product-thumbnail-slider float-left">
+                        <div class="single-thumb"><img src="/media/{{data.p_image}}" alt=""></div>
+                    </div>
+                    
+                    <!-- Product Image -->
+                    <div class="single-product-image product-image-slider fix">
+                        <div class="single-image"><img src="/media/{{data.p_image}}" alt=""></div>
                     </div>
                     
                 </div><!-- Product Image & Thumbnail End -->
@@ -89,7 +97,7 @@
                 <div class="single-product-content col-lg-5 col-12 mb-30">
                    
                     <!-- Title -->
-                    <h1 class="title">Holiday Candle</h1>
+                    <h1 class="title">{{data.p_name}}</h1>
                     
                     <!-- Product Rating -->
                     <span class="product-rating">
@@ -101,14 +109,21 @@
                     </span>
                     
                     <!-- Price -->
-                    <span class="product-price">€ 120.0</span>
+                    <span class="product-price">₹ {{data.p_price}}</span>
                     
                     <!-- Description -->
                     <div class="description">
-                        <p>There are many variations of passages of Lorem Ipsum avaable,majority have suffered alteration in some form, by injected humour, or rdomised words which don't look even slightly believable.</p>
+                        <p>{{data.p_description}}</p>
                     </div>
                     
                     <!-- Color -->
+                    <div class="product-color fix">
+                        <h5>Available Quantity</h5>
+                        <div>
+                        {{data.p_quantity}}
+
+                        </div>
+                    </div>
                     <div class="product-color fix">
                         <h5>Select Color</h5>
                         <form action="#">

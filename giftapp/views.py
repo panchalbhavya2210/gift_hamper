@@ -28,8 +28,9 @@ def checkoutPage(request):
     return render(request, "checkout.html")
 def contactPage(request):
     return render(request, "contact.html")
-def prodDetails(request):
-    return render(request, "product-details.html")
+def prodDetails(request, id):
+    fetchProduct = producttable.objects.get(id=id)
+    return render(request, "product-details.html", {'data':fetchProduct})
 def shopPage(request):
     return render(request, "shop.html")
 def underConsPage(request):
@@ -44,7 +45,8 @@ def addproductpage(request):
     categData = categorytable.objects.all()
     return render(request, "addproduct.html", {'data':categData})
 def manageproduct(request):
-    return render(request, "manageproduct.html")
+    productData = producttable.objects.all()
+    return render(request, "manageproduct.html", {'data':productData})
 
 
 def registerUser(request):
