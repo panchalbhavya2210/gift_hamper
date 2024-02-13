@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import *
 
@@ -7,7 +8,6 @@ from .models import *
 
 def viewPage(request):
     prodData = producttable.objects.all()
-    
     return render(request, "base.html", {'data':prodData})
 def signUp(request):
     return render(request, "signup.html")
@@ -32,7 +32,10 @@ def prodDetails(request, id):
     return render(request, "product-details.html", {'data':fetchProduct})
 def shopPage(request):
     prodData = producttable.objects.all()
-    return render(request, "shop.html", {'data':prodData})
+    paginator = Paginator(prodData, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, "shop.html", {'data':page_obj})
 def underConsPage(request):
     return render(request, "under-construction.html")
 def wishList(request):
@@ -121,17 +124,12 @@ def insertproductdata(request):
         productstatus = request.POST.get("pstatus")
         cat_id = request.POST.get("category")
       
-        category_instance = get_object_or_404(categorytable, id=cat_id)
-        stockist_id=43
-        stockist_instance = get_object_or_404(usertable, id=stockist_id)
-        insertdata = producttable(catid=category_instance,stockist_id=usertable(id=sid),p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        insertdata = producttable(catid=categorytable(id=cat_id),stockist_id=usertable(id=sid),p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
     return redirect(reverse('base'))
 
 def addToWishList(request, id):
-    product = get_object_or_404(producttable, id=id)
-    user = get_object_or_404(usertable, id=request.session.get('u_id'))
-    insertdata = wishlist(p_id=product, u_id=user)
+    insertdata = wishlist(p_id=producttable(id=id), u_id=usertable(request.session['u_id']))
     insertdata.save()
     return redirect(reverse('base'))
 

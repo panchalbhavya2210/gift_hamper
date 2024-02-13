@@ -9,12 +9,12 @@ def user_data(request):
         A dictionary containing the user data with the key 'user_data'
     """
     user_id = request.session.get('u_id')
-   
+    seller=False
+
     user_data = None
     if user_id:
         try:
             user_data = usertable.objects.get(id=user_id)
-            seller=False
             if user_data.u_type=="seller":
                 seller=True
             

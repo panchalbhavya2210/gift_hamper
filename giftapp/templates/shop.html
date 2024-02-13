@@ -63,7 +63,7 @@
       <!-- Header Section End -->
 
       <!-- Page Banner Section Start-->
-      <div
+      {% comment %} <div
         class="page-banner-section section"
         style="background-image: url({% static "img/bg/m1.png" %})"
       >
@@ -76,7 +76,7 @@
             <!-- Page Title End -->
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
       <!-- Page Banner Section End-->
 
       <!-- Product Section Start-->
@@ -125,18 +125,41 @@
                   </div>
           {% endfor %}
 
+          {% comment %} <div class="pagination col-12 mt-20">
+            <ul>
+              {% if data.has_previous %}
+                <li><a href="?page=1">First</a></li>
+                <li><a href="?page={{ data.previous_page_number }}">Previous</a></li>
+              {% endif %}
+              {% for num in data.paginator.page_range %}
+                <li {% if data.number == num %}class="active"{% endif %}><a href="?page={{ num }}">{{ num }}</a></li>
+              {% endfor %}
+              {% if data.has_next %}
+                <li><a href="?page={{ data.next_page_number }}">Next</a></li>
+                <li><a href="?page={{ data.paginator.num_pages }}">Last</a></li>
+              {% endif %}
+            </ul>
+          </div> {% endcomment %}
+          
             <!-- Pagination Start -->
             <div class="pagination col-12 mt-20">
               <ul>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">6</a></li>
-                <li class="arrows">
+                {%if data.has_previous%}
+                  <li><a href="?page=1">First</a></li>
+                  <li><a href="?page={{data.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+                {%endif%}
+                {%for num in data.paginator.page_range%}
+                  <li {%if data.number == num %} class="active" {%endif%}>
+                    <a href="?page={{num}}">{{num}}</a>
+                  </li>
+                {%endfor%}
+                {% if data.has_next %}
+                <li><a href="?page={{ data.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                <li><a href="?page={{ data.paginator.num_pages }}">Last</a></li>
+              {% endif %}
+                {% comment %} <li class="arrows">
                   <a href="#"><i class="fa fa-angle-right"></i></a>
-                </li>
+                </li> {% endcomment %}
               </ul>
             </div>
             <!-- Pagination End -->

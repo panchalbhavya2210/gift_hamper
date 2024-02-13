@@ -43,7 +43,7 @@
     
        
     <!-- Page Banner Section Start-->
-    <div class="page-banner-section section" style="background-image: url({% static "img/bg/page-banner.jpg" %})">
+    {% comment %} <div class="page-banner-section section" style="background-image: url({% static "img/bg/page-banner.jpg" %})">
         <div class="container">
             <div class="row">
                 
@@ -54,7 +54,7 @@
                 
             </div>
         </div>
-    </div><!-- Page Banner Section End-->
+    </div><!-- Page Banner Section End--> {% endcomment %}
     
        
     <!-- Product Section Start-->
@@ -144,8 +144,10 @@
                     
                     <!-- Action Button -->
                     <div class="product-action-button fix">
-                        <button><i class="ion-ios-email-outline"></i>Email to a friend</button>
-                        <button><i class="ion-ios-heart-outline"></i>Wishlist</button>
+                        {% comment %} <button><i class="ion-ios-email-outline"></i>Email to a friend</button> {% endcomment %}
+                        <button>
+                            <a href="{% url 'addwishlist' data.id %}"><i class="ion-ios-heart-outline"></i>Wishlist</a>
+                        </button>
                     </div>
                     
                     <!-- Social Share -->

@@ -86,25 +86,22 @@
                       <ul>
                         {%if request.session.u_id is not None%}
                         {% if seller %}
-                        <li><a href="wishlist">addproduct</a></li>
+                        <li><a href="/addproduct">addproduct</a></li>
                         {% else %}
-                        <li><a href="wishlist">Wishlist</a></li>
+                        <li><a href="/wishlist">Wishlist</a></li>
                         {% endif %}
                         <li><a href="/logout">Logout</a></li>
-                        
-                        {%else%}
-                        {%endif%}
-                      
+                        {%if not seller%}
                         <li>
                           <a href="#" data-toggle="dropdown"
                             ><i class="fa fa-shopping-cart"></i
-                            ><span class="num">2</span></a
+                            ><span class="num">0</span></a
                           >
                       
                           <!-- Mini Cart -->
                           <div class="mini-cart-brief dropdown-menu text-left">
                             <!-- Cart Products -->
-                            <div class="all-cart-product clearfix">
+                            {% comment %} <div class="all-cart-product clearfix">
                               <div class="single-cart clearfix">
                                 <div class="cart-image">
                                   <a href="product-details"
@@ -151,7 +148,7 @@
                             <!-- Cart Total -->
                             <div class="cart-totals">
                               <h5>Total <span>£12.00</span></h5>
-                            </div>
+                            </div> {% endcomment %}
                             <!-- Cart Button -->
                             <div class="cart-bottom clearfix">
                               <a href="checkout">Check out</a>
@@ -159,6 +156,11 @@
                           </div>
                       
                         </li>
+                        {%endif%}
+                        {%else%}
+                        {%endif%}
+                      
+                       
                         {%if user_data is not None%}
                         <li>
                           <img src="/media/{{user_data.u_image}}" class="u_image" alt="" srcset="">
@@ -249,7 +251,7 @@
                       </ul>
                     </li>
                     {%endif%}
-                    {% comment %} {%if request.path == "/blog" or request.path == "/blog-details"%}
+                    {% comment %} {% comment %} {%if request.path == "/blog" or request.path == "/blog-details"%}
                     <li class='active'>
                       <a href="blog">blog</a>
                       <ul class="sub-menu">
@@ -273,7 +275,7 @@
                         <li><a href="blog-details">blog details</a></li>
                       </ul>
                     </li>
-                    {%endif%} {% endcomment %}
+                    {%endif%} {% endcomment %} 
                    
                     {%if request.path == "/signup" or request.path == "/login"%}
                     <li class='active'>

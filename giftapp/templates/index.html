@@ -61,9 +61,8 @@
 }
 
 .product .image img.product-image {
-    /* Set image width to 100% to fill the container */
     width: 100%;
-    /* Ensure the image covers the entire container while maintaining aspect ratio */
+    min-height: 0%;
     object-fit: cover;
 }
 
@@ -184,7 +183,7 @@
                             <!-- Wishlist -->
                             <a href="addwishlist/{{prodData.id}}" class="wishlist"><i class="fa fa-heart-o"></i></a>
                             <!-- Label -->
-                            <span class="label">New</span>
+                            {% comment %} <span class="label">New</span> {% endcomment %}
                         </div>
                 
                         <!-- Content -->
