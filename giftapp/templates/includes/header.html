@@ -85,11 +85,16 @@
                      </li>
                       <ul>
                         {%if request.session.u_id is not None%}
+                        {% if seller %}
+                        <li><a href="wishlist">addproduct</a></li>
+                        {% else %}
+                        <li><a href="wishlist">Wishlist</a></li>
+                        {% endif %}
                         <li><a href="/logout">Logout</a></li>
                         
                         {%else%}
                         {%endif%}
-                        <li><a href="wishlist">Wishlist</a></li>
+                      
                         <li>
                           <a href="#" data-toggle="dropdown"
                             ><i class="fa fa-shopping-cart"></i

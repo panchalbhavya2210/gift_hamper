@@ -116,6 +116,7 @@ def insertproductdata(request):
 # +    A function to insert product data using the request object.
 # +    """
     if request.method == 'POST':
+        sid=request.session['u_id']
         productname = request.POST.get("pname")
         productdescription = request.POST.get("pdesc")
         productimage = request.FILES["pimage"]
@@ -127,7 +128,7 @@ def insertproductdata(request):
         category_instance = get_object_or_404(categorytable, id=cat_id)
         stockist_id=43
         stockist_instance = get_object_or_404(usertable, id=stockist_id)
-        insertdata = producttable(catid=category_instance,stockist_id=stockist_instance,p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        insertdata = producttable(catid=category_instance,stockist_id=usertable(id=sid),p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
     return redirect(reverse('base'))
 
