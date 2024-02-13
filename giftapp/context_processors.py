@@ -1,6 +1,13 @@
 from .models import *
 
 def user_data(request):
+    """
+    Function to retrieve user data based on the request session's user ID.
+    Parameters:
+        request: the request object containing the session information
+    Returns:
+        A dictionary containing the user data with the key 'user_data'
+    """
     user_id = request.session.get('u_id')
     user_data = None
     if user_id:

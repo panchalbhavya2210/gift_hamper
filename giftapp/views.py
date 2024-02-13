@@ -1,5 +1,3 @@
-from ast import Delete
-from webbrowser import get
 from django.shortcuts import render, redirect,get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
@@ -38,9 +36,7 @@ def shopPage(request):
 def underConsPage(request):
     return render(request, "under-construction.html")
 def wishList(request):
-    # print(request.session.get('u_id'))
     dataOfWish = wishlist.objects.filter(u_id=request.session.get('u_id'))
-    print(dataOfWish)
     return render(request, "wishlist.html", {'data':dataOfWish})
 def blogPage(request):
     return render(request, "blog.html")
