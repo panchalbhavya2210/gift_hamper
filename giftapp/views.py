@@ -129,8 +129,16 @@ def insertproductdata(request):
     return redirect(reverse('base'))
 
 def addToWishList(request, id):
-    insertdata = wishlist(p_id=producttable(id=id), u_id=usertable(request.session['u_id']))
-    insertdata.save()
+    try:
+        if wishlist.objects.filter(u_id=usertable(request.session['u_id']), p_id=producttable(id=id)).exists():
+            messages.info(request,"Already Exist In Wishlist")
+        else:
+            insertdata = wishlist(p_id=producttable(id=id), u_id=usertable(request.session['u_id']))
+            insertdata.save()
+            messages.success(request, "Add to wishlist successfully.")
+    except:
+        pass
+        messages.info(request, "User not logged in.")
     return redirect(reverse('base'))
 
 
