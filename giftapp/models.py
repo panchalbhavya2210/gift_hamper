@@ -54,8 +54,8 @@ class carttable(models.Model):
     userid = models.ForeignKey(usertable, on_delete=models.CASCADE)
     product_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     c_quantity = models.IntegerField()
-    total_amount=models.IntegerField()
-    status=models.IntegerField(choices=CART_STATUS, default=1)
+   # total_amount=models.IntegerField()
+   # status=models.IntegerField(choices=CART_STATUS, default=1)
     
 class cardtable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
