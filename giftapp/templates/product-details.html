@@ -135,12 +135,17 @@
                     </div> {% endcomment %}
                     
                     <!-- Quantity & Cart Button -->
+
                     <div class="product-quantity-cart fix">
+                        <form action="/addtocart/{{data.id}}" method="post"> {% csrf_token %}
                         <div class="product-quantity">
                             <input type="text" value="0" name="qtybox">
                         </div>
-                        <button class="add-to-cart">add to cart</button>
+                        <input type="submit" class="add-to-cart" placeholder="Add to cart">
+                        </form>
                     </div>
+
+
                     
                     <!-- Action Button -->
                     <div class="product-action-button fix">

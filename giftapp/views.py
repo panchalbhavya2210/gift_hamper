@@ -135,10 +135,25 @@ def addToWishList(request, id):
         else:
             insertdata = wishlist(p_id=producttable(id=id), u_id=usertable(request.session['u_id']))
             insertdata.save()
-            messages.success(request, "Add to wishlist successfully.")
+            messages.success(request, "Added to wishlist successfully.")
     except:
         pass
         messages.info(request, "User not logged in.")
+    return redirect(reverse('base'))
+
+def addTocart(request, id):
+    try:
+        if cardtable.objects.filter(u_id=usertable(request.session['u_id']), c_quantity=carttable(request.session['c_quantity']), p_id=producttable(id=id)).exists():
+            messages.info(request, "already added to cart")
+        else:
+            if request.method == "POST":
+                qty = request.session.get('c_quantity')
+                insertdata = carttable(p_id=producttable(id=id), c_quantity=qty,u_id=usertable(request.session['u_id']))
+                insertdata.save()
+            messages.success(request,"added to cart ")
+    except:
+        pass
+        messages.info(request, "product not found")
     return redirect(reverse('base'))
 
 
