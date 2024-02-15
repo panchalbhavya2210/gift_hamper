@@ -24,7 +24,6 @@ urlpatterns = [
     path("manageproduct", views.manageproduct, name="manageproduct"),
     path("addwishlist/<int:id>", views.addToWishList, name="addwishlist"),
     path("addtocart/<int:id>", views.addTocart, name="addtocart"),
-    
     path('deletewishlistitem/<int:id>', views.deleteWishlistItem, name="deletewishlistitem"),
     path('deleteproductdetail/<int:id>',views.deleteproductdetail, name="deleteproductdetail")
  ]

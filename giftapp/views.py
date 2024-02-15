@@ -8,7 +8,9 @@ from .models import *
 
 def viewPage(request):
     prodData = producttable.objects.all()
-    return render(request, "base.html", {'data':prodData})
+    fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id'])).count()
+    fetchCart = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
+    return render(request, "base.html", {'data':prodData, 'cartCount':fetchCartData, 'cartData':fetchCart})
 def signUp(request):
     return render(request, "signup.html")
 def login(request):
@@ -22,6 +24,7 @@ def aboutPage(request):
 def blogDetails(request):
     return render(request, "blog-details.html")
 def cartPage(request):
+    fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
     return render(request, "cart.html")
 def checkoutPage(request):
     return render(request, "checkout.html")
@@ -29,7 +32,8 @@ def contactPage(request):
     return render(request, "contact.html")
 def prodDetails(request, id):
     fetchProduct = producttable.objects.get(id=id)
-    return render(request, "product-details.html", {'data':fetchProduct})
+    fetchImage = multipleImage.objects.filter(p_id=id)
+    return render(request, "product-details.html", {'data':fetchProduct, 'images': fetchImage})
 def shopPage(request):
     prodData = producttable.objects.all()
     paginator = Paginator(prodData, 1)
@@ -123,9 +127,16 @@ def insertproductdata(request):
         productprice = request.POST.get("pprice")
         productstatus = request.POST.get("pstatus")
         cat_id = request.POST.get("category")
-      
-        insertdata = producttable(catid=categorytable(id=cat_id),stockist_id=usertable(id=sid),p_name=productname, p_description=productdescription, p_image=productimage, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
+        images = request.FILES.getlist('pimage')
+        
+        insertdata = producttable(catid=categorytable(id=cat_id),stockist_id=usertable(id=sid),p_name=productname,p_image=productimage, p_description=productdescription, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
+        
+        productId = insertdata.id #type:ignore
+        for image in images:
+            insertImage = multipleImage(p_id = insertdata, p_image = image)
+            insertImage.save()
+        
     return redirect(reverse('base'))
 
 def addToWishList(request, id):
@@ -143,18 +154,29 @@ def addToWishList(request, id):
 
 def addTocart(request, id):
     try:
-        if cardtable.objects.filter(u_id=usertable(request.session['u_id']), c_quantity=carttable(request.session['c_quantity']), p_id=producttable(id=id)).exists():
-            messages.info(request, "already added to cart")
-        else:
-            if request.method == "POST":
-                qty = request.session.get('c_quantity')
-                insertdata = carttable(p_id=producttable(id=id), c_quantity=qty,u_id=usertable(request.session['u_id']))
+        if request.method == "POST":
+            qty = request.POST.get('qtybox')
+            if carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id)).exists():
+                messages.info(request, "Already added to cart")
+            else:
+                insertdata = carttable(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id), c_quantity=qty)
                 insertdata.save()
-            messages.success(request,"added to cart ")
-    except:
-        pass
-        messages.info(request, "product not found")
+                messages.success(request, "Added to cart successfully")
+                
+              
+                
+        else:
+            messages.error(request, "Invalid request method")
+    except usertable.DoesNotExist:
+        messages.error(request, "User does not exist")
+    except producttable.DoesNotExist:
+        messages.error(request, "Product does not exist")
+    except Exception as e:
+        messages.error(request, f"An error occurred: {str(e)}")
+    
+  
     return redirect(reverse('base'))
+    
 
 
 def deleteWishlistItem(request, id):

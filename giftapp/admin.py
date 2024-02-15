@@ -49,3 +49,7 @@ admin.site.register(complaintable, showComplaint)
 class showWishList(admin.ModelAdmin):
     list_display = ["u_id", "p_id", "created_at"]
 admin.site.register(wishlist, showWishList)
+
+class showMultipleImage(admin.ModelAdmin):
+    list_display = ["p_id", "p_image"]
+admin.site.register(multipleImage, showMultipleImage)

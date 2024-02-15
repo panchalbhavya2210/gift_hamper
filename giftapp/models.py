@@ -101,3 +101,7 @@ class wishlist(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+class multipleImage(models.Model):
+    p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
+    p_image=models.FileField()

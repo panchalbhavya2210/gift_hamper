@@ -57,7 +57,6 @@
   </style>
   <body>
     <div id="main-wrapper" class="section">
-
     <div class="header-section section">
         <!-- Header Top Start -->
         <div class="account-menu header-top">
@@ -95,26 +94,27 @@
                         <li>
                           <a href="#" data-toggle="dropdown"
                             ><i class="fa fa-shopping-cart"></i
-                            ><span class="num">0</span></a
+                            ><span class="num">{{cartCount}}</span></a
                           >
                       
                           <!-- Mini Cart -->
                           <div class="mini-cart-brief dropdown-menu text-left">
                             <!-- Cart Products -->
-                            {% comment %} <div class="all-cart-product clearfix">
+                            {%for cartHead in cartData%}
+                            <div class="all-cart-product clearfix">
                               <div class="single-cart clearfix">
                                 <div class="cart-image">
                                   <a href="product-details"
-                                    ><img src="{% static '/img/cart/1.jpg' %}" alt=""
+                                    ><img src="media/{{cartHead.product_id.p_image}}" alt=""
                                   /></a>
                                 </div>
                                 <div class="cart-info">
                                   <h5>
                                     <a href="product-details"
-                                      >Holiday Candle</a
+                                    >{{cartHead.product_id.p_name}}</a
                                     >
                                   </h5>
-                                  <p>1 x £9.00</p>
+                                  <p>{{cartHead.c_quantity}} x ₹{{cartHead.product_id.p_price}}</p>
                                   <a
                                     href="#"
                                     class="cart-delete"
@@ -123,30 +123,11 @@
                                   ></a>
                                 </div>
                               </div>
-                              <div class="single-cart clearfix">
-                                <div class="cart-image">
-                                  <a href="product-details"
-                                    ><img src="{% static '/img/cart/2.jpg' %}" alt=""
-                                  /></a>
-                                </div>
-                                <div class="cart-info">
-                                  <h5>
-                                    <a href="product-details"
-                                      >Christmas Tree</a
-                                    >
-                                  </h5>
-                                  <p>1 x £9.00</p>
-                                  <a
-                                    href="#"
-                                    class="cart-delete"
-                                    title="Remove this item"
-                                    ><i class="fa fa-trash-o"></i
-                                  ></a>
-                                </div>
-                              </div>
+                            
                             </div>
+                            {%endfor%}
                             <!-- Cart Total -->
-                            <div class="cart-totals">
+                            {% comment %} <div class="cart-totals">
                               <h5>Total <span>£12.00</span></h5>
                             </div> {% endcomment %}
                             <!-- Cart Button -->

@@ -66,30 +66,32 @@
                 
                 <!-- Product Image & Thumbnail Start -->
                 <div class="col-lg-7 col-12 mb-30">
+                    
                    {% comment %} Previous Image slider MAIN DONT REMOVE {% endcomment %}
                     <!-- Product Thumbnail -->
-                    {% comment %} <div class="single-product-thumbnail product-thumbnail-slider float-left">
-                        <div class="single-thumb"><img src={% static "img/product-details/thumb-1.jpg"%} alt=""></div>
-                        <div class="single-thumb"><img src={% static "img/product-details/thumb-2.jpg"%} alt=""></div>
-                        <div class="single-thumb"><img src={% static "img/product-details/thumb-3.jpg"%} alt=""></div>
-                        <div class="single-thumb"><img src={% static "img/product-details/thumb-4.jpg"%} alt=""></div>
-                    </div>
-                    
-                    <!-- Product Image -->
-                    <div class="single-product-image product-image-slider fix">
-                        <div class="single-image"><img src={% static "img/product-details/1.jpg" %} alt=""></div>
-                        <div class="single-image"><img src={% static "img/product-details/2.jpg" %} alt=""></div>
-                        <div class="single-image"><img src={% static "img/product-details/3.jpg" %} alt=""></div>
-                        <div class="single-image"><img src={% static "img/product-details/4.jpg" %} alt=""></div>
-                    </div> {% endcomment %}
-                    <div class="single-product-thumbnail product-thumbnail-slider float-left">
+                     <div class="single-product-thumbnail product-thumbnail-slider float-left">
+                        {%if images%}
+                        {%for image in images%}
+                        <div class="single-thumb"><img src="/media/{{image.p_image}}" alt=""></div>
+                        {%endfor%}
+                        {%else%}
                         <div class="single-thumb"><img src="/media/{{data.p_image}}" alt=""></div>
-                    </div>
+                        {%endif%}
+                     </div>
                     
                     <!-- Product Image -->
                     <div class="single-product-image product-image-slider fix">
-                        <div class="single-image"><img src="/media/{{data.p_image}}" alt=""></div>
-                    </div>
+                        <!-- Display the rest of the images -->
+                        {%if images%}
+                        {% for image in images %}
+                        <div class="single-image"><img src="/media/{{ image.p_image }}" alt=""></div>
+                        {% endfor %}
+                        {%else%}
+                        <div class="single-image"><img src="/media/{{ data.p_image }}" alt=""></div>
+                        {%endif%}
+                    </div> 
+                    
+                   
                     
                 </div><!-- Product Image & Thumbnail End -->
                 
@@ -137,7 +139,7 @@
                     <!-- Quantity & Cart Button -->
 
                     <div class="product-quantity-cart fix">
-                        <form action="/addtocart/{{data.id}}" method="post"> {% csrf_token %}
+                        <form action="{% url 'addtocart' data.id %}" method="post">{% csrf_token %}
                         <div class="product-quantity">
                             <input type="text" value="0" name="qtybox">
                         </div>
