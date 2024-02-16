@@ -95,7 +95,7 @@
                         </div>
                       </td>
                       <td width="10%"><p class="cart-pro-price">₹ {{cart_item.product_id.p_price}}</p></td>
-                      <td width="10%"><p class="cart-price-total">₹ {{cart_item.product_id.p_price}}</p></td>
+                      <td width="10%"><p class="cart-price-total">₹ {{cart_item.total_amount}}</p></td>
                       <td>
                        <a href="delcartdata/{{cart_item.product_id.id}}">
                         <button class="cart-pro-remove">
@@ -131,8 +131,8 @@
                   class="cart-checkout-process col-lg-4 col-md-6 col-12 mb-30"
                 >
                   <h4 class="title">Process Checkout</h4>
-                  <p><span>Subtotal</span><span>$190.98</span></p>
-                  <h5><span>Grand total</span><span>$190.98</span></h5>
+                  <p><span>Subtotal</span><span>₹ {{total}}</span></p>
+                  <h5><span>Grand total</span><span>₹ {{total}}</span></h5>
                   <button class="button">process to checkout</button>
                 </div>
               </div>

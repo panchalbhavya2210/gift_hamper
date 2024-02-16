@@ -314,17 +314,22 @@
                         <div class="order-details">
                             <form action="#">
                                 <ul>
-                                    <li><p class="strong">product</p><p class="strong">total</p></li>
-                                    <li><p>Holiday Candle x1</p><p>$104.99</p></li>
-                                    <li><p>Christmas Tree x1 </p><p>$85.99</p></li>
-                                    <li><p class="strong">cart subtotal</p><p class="strong">$190.98</p></li>
+                                   <li><p class="strong">product</p><p class="strong">total</p></li>
+
+                                {% for checkData in data %}
+                                <li><p>{{checkData.product_id.p_name}} x{{checkData.c_quantity}}</p><p>₹ {{checkData.product_id.p_price}}</p></li>
+
+                                {%endfor%}
+                                 
+                                    <li><p class="strong">cart subtotal</p><p class="strong">₹ {{total}}</p></li>
                                     <li><p class="strong">shipping</p><p>
-                                        <input type="radio" name="order-shipping" id="flat" /><label for="flat">Flat Rate $ 7.00</label><br />
+                                        <input type="radio" name="order-shipping" id="flat" /><label for="flat">Flat Rate ₹ 7.00</label><br />
                                         <input type="radio" name="order-shipping" id="free" /><label for="free">Free Shipping</label>
                                     </p></li>
-                                    <li><p class="strong">order total</p><p class="strong">$190.98</p></li>
+                                    <li><p class="strong">order total</p><p class="strong">₹ {{total}}</p></li>
                                     <li><button class="button">place order</button></li>
                                 </ul>
+
                             </form>
                         </div>
                     </div>

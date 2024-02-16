@@ -23,10 +23,27 @@ def aboutPage(request):
 def blogDetails(request):
     return render(request, "blog-details.html")
 def cartPage(request):
+    cartAll = carttable.objects.all()
+    
+    totalAmount = 0
+    
+    for item in cartAll:
+        cartTtl = item.total_amount
+        totalAmount += cartTtl
+        
     fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
-    return render(request, "cart.html", {'data':fetchCartData})
+    
+    return render(request, "cart.html", {'data':fetchCartData, 'total':totalAmount})
 def checkoutPage(request):
-    return render(request, "checkout.html")
+    cartAll = carttable.objects.all()
+    totalAmount = 0
+    
+    for item in cartAll:
+        cartTtl = item.total_amount
+        totalAmount += cartTtl
+        
+    fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
+    return render(request, "checkout.html",{'data':fetchCartData, 'total':totalAmount})
 def contactPage(request):
     return render(request, "contact.html")
 def prodDetails(request, id):

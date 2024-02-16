@@ -20,6 +20,8 @@ def user_data(request):
         try:
             user_data = usertable.objects.get(id=user_id)
             fetchCartData = carttable.objects.filter(userid=user_data).count()
+            fetchCart = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
+            
             if user_data.u_type == "seller":
                 seller = True
 
@@ -27,4 +29,4 @@ def user_data(request):
             pass
 
     return {'user_data': user_data,
-            'seller': seller, 'cartCount': fetchCartData, 'cartData': fetchCart}
+            'seller': seller, 'cartCount': fetchCartData, 'cartData': fetchCart, 'fetchCart': fetchCart}
