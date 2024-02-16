@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import *
 
-# Create your views here.
 
 def viewPage(request):
     prodData = producttable.objects.all()
@@ -25,7 +24,7 @@ def blogDetails(request):
     return render(request, "blog-details.html")
 def cartPage(request):
     fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
-    return render(request, "cart.html")
+    return render(request, "cart.html", {'data':fetchCartData})
 def checkoutPage(request):
     return render(request, "checkout.html")
 def contactPage(request):
@@ -153,18 +152,17 @@ def addToWishList(request, id):
     return redirect(reverse('base'))
 
 def addTocart(request, id):
+    dataPrd = producttable.objects.get(id=id)
     try:
         if request.method == "POST":
             qty = request.POST.get('qtybox')
+            totalAmountQty = int(qty) * int(dataPrd.p_price)
             if carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id)).exists():
                 messages.info(request, "Already added to cart")
             else:
-                insertdata = carttable(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id), c_quantity=qty)
+                insertdata = carttable(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id), c_quantity=qty, total_amount=totalAmountQty)
                 insertdata.save()
                 messages.success(request, "Added to cart successfully")
-                
-              
-                
         else:
             messages.error(request, "Invalid request method")
     except usertable.DoesNotExist:
@@ -188,3 +186,8 @@ def deleteproductdetail(request, id):
     deleteItem = producttable.objects.get(id=id)
     deleteItem.delete()
     return redirect('manageproduct')
+
+def delcartitem(request, id):
+    deleteItem = carttable.objects.get(product_id=id)
+    deleteItem.delete()
+    return redirect('cart')

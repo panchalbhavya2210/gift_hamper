@@ -1,4 +1,5 @@
 from .models import *
+from django.db.models import Sum
 
 def user_data(request):
     """
@@ -9,16 +10,21 @@ def user_data(request):
         A dictionary containing the user data with the key 'user_data'
     """
     user_id = request.session.get('u_id')
-    seller=False
+    seller = False
 
     user_data = None
+    fetchCartData = 0
+    fetchCart = None
+
     if user_id:
         try:
             user_data = usertable.objects.get(id=user_id)
-            if user_data.u_type=="seller":
-                seller=True
-            
+            fetchCartData = carttable.objects.filter(userid=user_data).count()
+            if user_data.u_type == "seller":
+                seller = True
+
         except usertable.DoesNotExist:
             pass
+
     return {'user_data': user_data,
-            'seller':seller}
+            'seller': seller, 'cartCount': fetchCartData, 'cartData': fetchCart}

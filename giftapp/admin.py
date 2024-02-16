@@ -18,7 +18,7 @@ class showProduct(admin.ModelAdmin):
 admin.site.register(producttable, showProduct)
 
 class showCart(admin.ModelAdmin):
-    list_display = ["userid", "product_id", "c_quantity"]
+    list_display = ["userid", "product_id", "c_quantity", 'total_amount']
 admin.site.register(carttable, showCart)
 
 # class showCard(admin.ModelAdmin):

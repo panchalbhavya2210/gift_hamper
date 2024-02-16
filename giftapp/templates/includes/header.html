@@ -100,40 +100,44 @@
                           <!-- Mini Cart -->
                           <div class="mini-cart-brief dropdown-menu text-left">
                             <!-- Cart Products -->
+                           
                             {%for cartHead in cartData%}
                             <div class="all-cart-product clearfix">
                               <div class="single-cart clearfix">
                                 <div class="cart-image">
-                                  <a href="product-details"
+                                  <a href="product-details/{{cartHead.product_id.id}}"
                                     ><img src="media/{{cartHead.product_id.p_image}}" alt=""
                                   /></a>
                                 </div>
                                 <div class="cart-info">
                                   <h5>
-                                    <a href="product-details"
+                                    <a href="product-details/{{cartHead.product_id.id}}"
                                     >{{cartHead.product_id.p_name}}</a
                                     >
                                   </h5>
                                   <p>{{cartHead.c_quantity}} x ₹{{cartHead.product_id.p_price}}</p>
                                   <a
-                                    href="#"
+                                    href="delcartdata/{{cartHead.product_id.id}}"
                                     class="cart-delete"
                                     title="Remove this item"
                                     ><i class="fa fa-trash-o"></i
                                   ></a>
+                                
                                 </div>
                               </div>
-                            
+                              
                             </div>
+
                             {%endfor%}
-                            <!-- Cart Total -->
-                            {% comment %} <div class="cart-totals">
-                              <h5>Total <span>£12.00</span></h5>
-                            </div> {% endcomment %}
-                            <!-- Cart Button -->
+                            
+                             <div class="cart-totals">
+                              <h5>Total <span>
+                              </span></h5>
+                            </div> 
                             <div class="cart-bottom clearfix">
                               <a href="checkout">Check out</a>
                             </div>
+
                           </div>
                       
                         </li>

@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -50,12 +51,25 @@ class producttable(models.Model):
     def product_photo(self):
        return mark_safe('<img src="{}" width="100"/>'.format(self.p_image.url))
    
+class HamperTable(models.Model):
+    hamper_name = models.CharField(max_length=200)
+    hamper_price = models.IntegerField()
+    seller_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
+    hamper_image = models.ImageField()
+    is_active = models.BooleanField(default=True)
+    
+    def hamper_image_display(self):
+       return mark_safe('<img src="{}" width="100"/>'.format(self.hamper_image.url))
+   
+    hamper_image_display.allow_tags = True
+    def __str__(self):
+        return self.hamper_name
 class carttable(models.Model):
     userid = models.ForeignKey(usertable, on_delete=models.CASCADE)
     product_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     c_quantity = models.IntegerField()
-   # total_amount=models.IntegerField()
-   # status=models.IntegerField(choices=CART_STATUS, default=1)
+    total_amount=models.IntegerField(default=0)
+    # status=models.IntegerField(choices=CART_STATUS, default=1)
     
 class cardtable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
@@ -76,7 +90,6 @@ class paymenttable(models.Model):
     total_amount=models.BigIntegerField()
     payment_status=models.IntegerField(choices=PAYMENT_STATUS)
 
-    
 
 class returnproducttable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)

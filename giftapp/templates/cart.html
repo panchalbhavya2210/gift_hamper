@@ -78,52 +78,33 @@
 
                   <!-- Table Body -->
                   <tbody>
+                    {%for cart_item in data%}
                     <tr>
-                      <td><span class="cart-number">1</span></td>
+                      <td><span class="cart-number">{{forloop.counter}}</span></td>
                       <td>
                         <a href="#" class="cart-pro-image"
-                          ><img src="{% static '/img/product/1.jpg' %}" alt=""
+                          ><img src="/media/{{cart_item.product_id.p_image}}" alt=""
                         /></a>
                       </td>
-                      <td>
-                        <a href="#" class="cart-pro-title">Holiday Candle</a>
+                      <td width="10%">
+                        <a href="#" class="cart-pro-title">{{cart_item.product_id.p_name}}</a>
                       </td>
                       <td>
                         <div class="product-quantity">
-                          <input type="text" value="0" name="qtybox" />
+                          <input type="text" value={{cart_item.c_quantity}} name="qtybox" />
                         </div>
                       </td>
-                      <td><p class="cart-pro-price">$104.99</p></td>
-                      <td><p class="cart-price-total">$104.99</p></td>
+                      <td width="10%"><p class="cart-pro-price">₹ {{cart_item.product_id.p_price}}</p></td>
+                      <td width="10%"><p class="cart-price-total">₹ {{cart_item.product_id.p_price}}</p></td>
                       <td>
+                       <a href="delcartdata/{{cart_item.product_id.id}}">
                         <button class="cart-pro-remove">
                           <i class="fa fa-trash-o"></i>
                         </button>
+                       </a>
                       </td>
                     </tr>
-                    <tr>
-                      <td><span class="cart-number">2</span></td>
-                      <td>
-                        <a href="#" class="cart-pro-image"
-                          ><img src="{% static '/img/product/2.jpg' %}" alt=""
-                        /></a>
-                      </td>
-                      <td>
-                        <a href="#" class="cart-pro-title">Christmas Tree</a>
-                      </td>
-                      <td>
-                        <div class="product-quantity">
-                          <input type="text" value="0" name="qtybox" />
-                        </div>
-                      </td>
-                      <td><p class="cart-pro-price">$85.99</p></td>
-                      <td><p class="cart-price-total">$85.99</p></td>
-                      <td>
-                        <button class="cart-pro-remove">
-                          <i class="fa fa-trash-o"></i>
-                        </button>
-                      </td>
-                    </tr>
+                   {%endfor%}
                   </tbody>
                 </table>
               </div>
