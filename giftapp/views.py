@@ -52,7 +52,7 @@ def prodDetails(request, id):
     return render(request, "product-details.html", {'data':fetchProduct, 'images': fetchImage})
 def shopPage(request):
     prodData = producttable.objects.all()
-    paginator = Paginator(prodData, 1)
+    paginator = Paginator(prodData, 15)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, "shop.html", {'data':page_obj})

@@ -37,23 +37,19 @@
 <!-- Main Wrapper Start -->
 <div id="main-wrapper" class="section">
     {% include 'includes/header.html' %}
-    <div class="page-banner-section section" style="background-image: url({% static "img/bg/page-banner.jpg" %})">
+    {% comment %} <div class="page-banner-section section" style="background-image: url({% static "img/bg/page-banner.jpg" %})">
         <div class="container">
             <div class="row">
                 
                 <!-- Page Title Start -->
                 <div class="page-title text-center col">
-                    {%if request.session.u_id is not None%}
-                    <h1>{{request.session.u_id}}</h1>
-                    {%else%}
-                    <h1>User Not Logged in</h1>
-                    {%endif%}
+                    
                     <h1>Checkout</h1>
                 </div><!-- Page Title End -->
                 
             </div>
         </div>
-    </div><!-- Page Banner Section End-->
+    </div><!-- Page Banner Section End--> {% endcomment %}
     
        
     <!-- Checkout Section Start-->
