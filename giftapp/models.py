@@ -122,4 +122,6 @@ class multipleImage(models.Model):
     p_image=models.FileField()
 
 
-
+class MultipleFeedBackImage(models.Model):
+    f_id = models.ForeignKey(feedbacktable, on_delete=models.CASCADE)
+    f_image=models.FileField()

@@ -154,7 +154,6 @@ def insertproductdata(request):
         insertdata = producttable(catid=categorytable(id=cat_id),stockist_id=usertable(id=sid),p_name=productname,p_image=productimage, p_description=productdescription, p_quantity=productquantity, p_price=productprice, p_status=productstatus)
         insertdata.save()
         
-        productId = insertdata.id #type:ignore
         for image in images:
             insertImage = multipleImage(p_id = insertdata, p_image = image)
             insertImage.save()
@@ -215,16 +214,18 @@ def delcartitem(request, id):
     deleteItem.delete()
     return redirect('cart')
 
-
-
-
 def Review(request, p_id):
     if request.method == 'POST':
-     r_name =request.POST.get("reviewname")
-     cmnt = request.POST.get("comment")
+     r_name =request.POST.get("review_name")
+     cmnt = request.POST.get("cmnt")
      rating = request.POST.get("rating")
+     f_image = request.FILES.getlist('f_image')
 
-    insertdata=feedbacktable(review_name=r_name,user_id=usertable(request.session['u_id']),p_id=producttable.objects.get(id=p_id),comment="jdfkjsdfij", rating=rating)
+    insertdata=feedbacktable(review_name=r_name,user_id=usertable(request.session['u_id']),p_id=producttable.objects.get(id=p_id),comment=cmnt,rating=rating)
     insertdata.save()
+    
+    for image in f_image: # type: ignore
+        insertImage = MultipleFeedBackImage(f_id = insertdata, f_image = image)
+        insertImage.save()
     return redirect(reverse('base'))
       

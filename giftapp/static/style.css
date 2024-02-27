@@ -3963,9 +3963,9 @@ textarea:-ms-input-placeholder {
 }
 
 /*-- Contact Form --*/
-.contact-form {
+/* .contact-form {
   padding-left: 90px;
-}
+} */
 .contact-form::before {
   position: absolute;
   left: 30px;

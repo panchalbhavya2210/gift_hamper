@@ -1,4 +1,3 @@
-from re import A
 from django.contrib import admin
 from .models import *
 
@@ -54,3 +53,6 @@ class showMultipleImage(admin.ModelAdmin):
     list_display = ["p_id", "p_image"]
 admin.site.register(multipleImage, showMultipleImage)
 
+class showMultipleFeedBackImage(admin.ModelAdmin):
+    list_display = ["f_id", "f_image"]
+admin.site.register(MultipleFeedBackImage, showMultipleFeedBackImage)
