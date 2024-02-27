@@ -1,3 +1,5 @@
+from urllib import request
+from django.conf import UserSettingsHolder
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.core.paginator import Paginator
@@ -7,9 +9,13 @@ from .models import *
 
 def viewPage(request):
     prodData = producttable.objects.all()
-    fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id'])).count()
-    fetchCart = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
-    return render(request, "base.html", {'data':prodData, 'cartCount':fetchCartData, 'cartData':fetchCart})
+    try: 
+        fetchCartData = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id'])).count()
+        fetchCart = carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']))
+        return render(request, "base.html", {'data':prodData, 'cartCount':fetchCartData, 'cartData':fetchCart})
+
+    except:
+        return render(request, "base.html", {'data':prodData})
 def signUp(request):
     return render(request, "signup.html")
 def login(request):
@@ -208,3 +214,17 @@ def delcartitem(request, id):
     deleteItem = carttable.objects.get(product_id=id)
     deleteItem.delete()
     return redirect('cart')
+
+
+
+
+def Review(request, p_id):
+    if request.method == 'POST':
+     r_name =request.POST.get("reviewname")
+     cmnt = request.POST.get("comment")
+     rating = request.POST.get("rating")
+
+    insertdata=feedbacktable(review_name=r_name,user_id=usertable(request.session['u_id']),p_id=producttable.objects.get(id=p_id),comment="jdfkjsdfij", rating=rating)
+    insertdata.save()
+    return redirect(reverse('base'))
+      
