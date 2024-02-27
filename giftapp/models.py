@@ -1,4 +1,5 @@
 from email.policy import default
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.utils.safestring import mark_safe
 
@@ -99,6 +100,7 @@ class returnproducttable(models.Model):
     return_status=models.IntegerField(choices=RETURN_STATUS)
 
 class feedbacktable(models.Model):
+    review_name = models.CharField(max_length=150, default='Default Review Name')
     user_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     comment=models.TextField()
@@ -118,3 +120,6 @@ class wishlist(models.Model):
 class multipleImage(models.Model):
     p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     p_image=models.FileField()
+
+
+

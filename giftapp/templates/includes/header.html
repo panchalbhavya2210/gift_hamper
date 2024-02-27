@@ -183,12 +183,12 @@
                     {% endif %}
                     {% if request.path == "/shop" %}
                     <li class="active">
-                      <a href="shop" class="active">shop</a>
+                      <a href="{% url 'shop' %}" class="active">shop</a>
                       
                     </li>
                     {%else%}
                     <li>
-                      <a href="shop">shop</a>
+                      <a href="{% url 'shop' %}">shop</a>
                     
                     </li>
                     {%endif%}

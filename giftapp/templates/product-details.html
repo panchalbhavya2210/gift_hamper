@@ -30,7 +30,73 @@
         <!-- Modernizer JS -->
         <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
     </head>
+    <style>
+  
+   
+        .contact-form {
+            text-align: left;
+            max-width: 500px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 100px auto;
+        }
+        .contact-form::before {
+          display: none;
+        }
+        .contact-form h4 {
+            margin-bottom: 15px;
+        }
+    
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        .contact-form .inputTypeField,
+        .contact-form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    
+        .contact-form .inputTypeField[type="submit"] {
+            background-color: #4CAF50;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+            border: 1px solid #000;
+            margin-top: 10px;
+        }
+    
+        .contact-form .inputTypeField[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    
+        .form-message {
+            margin-top: 15px;
+        }
+        .hidden {
+          opacity: 0;
+        }
+        .contact-form form input[type="radio"] {
+          width: 15px;
+          height: 15px;
+        }
+      
+    </style>
 
+    <style>
+        .rating {
+            font-size: 24px;
+        }
+        .star {
+            cursor: pointer;
+        }
+        .star.selected {
+            color: gold; /* Color of selected stars */
+        }
+        </style>
 <body>
 
 <!-- Main Wrapper Start -->
@@ -172,7 +238,7 @@
                 
             </div><!-- Product Wrapper End-->
             
-            <!-- Product Additional Info Start-->
+            <!-- Product Additional Info Start-
             <div class="row">
                
                 <!-- Nav tabs -->
@@ -183,14 +249,14 @@
                         <li><a data-toggle="tab" href="#reviews">Reviews</a></li>
                     </ul>
                 </div>
-
+       
                 <!-- Tab panes -->
                 <div class="tab-content col-12">
                    
                     <div class="pro-info-tab tab-pane active" id="more-info">
                         <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention.</p>
                     </div>
-                    
+           
                     <div class="pro-info-tab tab-pane" id="data-sheet">
                         <table class="table table-bordered">
                             <tbody>
@@ -211,7 +277,60 @@
                     </div>
                     
                     <div class="pro-info-tab tab-pane" id="reviews">
-                        <a class="button" href="#">Be the first to write your review!</a>
+                         <div class="contact-form">
+                            <h4 class="hidden">/</h4>
+                            <form class="review_form" action="{% url 'submit_review' data.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+                                <label for="review_name"> Review</label>
+                                <input type="text" id="review_name" name="" placeholder="Add your review" />
+                               
+                                <label for="cmnt">Comment</label>
+                                <textarea type="text" name="cmnt" id="cmnt" placeholder="Add your comment"></textarea>
+
+                                <label for="rating">Ratings</label>
+                                
+                                <div class="rating">
+                                    <input type="hidden" id="rating" name="rating" value="0"> <!-- Hidden input field to store the rating value -->
+                                    <span class="star" data-value="1">&#9733;</span>
+                                    <span class="star" data-value="2">&#9733;</span>
+                                    <span class="star" data-value="3">&#9733;</span>
+                                    <span class="star" data-value="4">&#9733;</span>
+                                    <span class="star" data-value="5">&#9733;</span>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const stars = document.querySelectorAll('.star');
+                                        const ratingInput = document.getElementById('rating');
+                                    
+                                        stars.forEach(star => {
+                                            star.addEventListener('click', function() {
+                                                const value = parseInt(star.getAttribute('data-value'));
+                                                ratingInput.value = value; // Update the value of the hidden input field
+                                                stars.forEach(s => {
+                                                    if (parseInt(s.getAttribute('data-value')) <= value) {
+                                                        s.classList.add('selected');
+                                                    } else {
+                                                        s.classList.remove('selected');
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    });
+                                    </script>
+                            
+                                </select>
+                                <label for="productimage">Product Image</label>
+                                <input type="file" name="pimage" multiple id="pimage" accept="image/*">
+                    
+                                <input type="submit" class="btnSub" value="Submit">
+                            </form>
+                            <p class="form-message"></p>
+                    
+                            <div class="hidden alert alert-warning" id="warnBlock" role="alert">
+                              <p id="alertUser"></p>
+                            </div>
+                         </div>
                     </div>
                     
                 </div>
