@@ -38,7 +38,7 @@ class showReturnProduct(admin.ModelAdmin):
 admin.site.register(returnproducttable, showReturnProduct)
 
 class showFeedback(admin.ModelAdmin):
-    list_display = ["user_id", "p_id", "comment", "rating"]
+    list_display = ["review_name","user_id", "p_id", "comment", "rating"]
 admin.site.register(feedbacktable, showFeedback)
 
 class showComplaint(admin.ModelAdmin):
@@ -53,3 +53,4 @@ admin.site.register(wishlist, showWishList)
 class showMultipleImage(admin.ModelAdmin):
     list_display = ["p_id", "p_image"]
 admin.site.register(multipleImage, showMultipleImage)
+
