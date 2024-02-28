@@ -37,7 +37,7 @@ class showReturnProduct(admin.ModelAdmin):
 admin.site.register(returnproducttable, showReturnProduct)
 
 class showFeedback(admin.ModelAdmin):
-    list_display = ["review_name","user_id", "p_id", "comment", "rating"]
+    list_display = ["review_name","user_id", "p_id", "comment", "rating", "submit_on"]
 admin.site.register(feedbacktable, showFeedback)
 
 class showComplaint(admin.ModelAdmin):

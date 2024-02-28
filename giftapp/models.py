@@ -105,12 +105,13 @@ class feedbacktable(models.Model):
     p_id = models.ForeignKey(producttable, on_delete=models.CASCADE)
     comment=models.TextField()
     rating=models.IntegerField()
+    submit_on = models.DateTimeField(auto_now=True)
 
 class complaintable(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)
     comment=models.TextField()
     complain_status=models.IntegerField(choices=COMPLAINT_STATUS)
-    complain_date=models.DateField()
+    complain_date=models.DateTimeField(auto_now_add=True)
     
 class wishlist(models.Model):
     u_id = models.ForeignKey(usertable, on_delete=models.CASCADE)

@@ -55,7 +55,13 @@ def contactPage(request):
 def prodDetails(request, id):
     fetchProduct = producttable.objects.get(id=id)
     fetchImage = multipleImage.objects.filter(p_id=id)
-    return render(request, "product-details.html", {'data':fetchProduct, 'images': fetchImage})
+    fetchReview = feedbacktable.objects.filter(p_id=id)
+    fetchUser = usertable.objects.all()
+    review_multi_image = {}
+    for revw in fetchReview:
+        image = MultipleFeedBackImage.objects.filter(f_id=revw)
+        review_multi_image[revw] = image
+    return render(request, "product-details.html", {'data':fetchProduct, 'images': fetchImage, 'review':fetchReview, 'review_multi_image':review_multi_image, 'user':fetchUser})
 def shopPage(request):
     prodData = producttable.objects.all()
     paginator = Paginator(prodData, 15)
