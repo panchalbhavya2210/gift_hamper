@@ -223,14 +223,18 @@
                     {%else%}
                     <li>
                       <a href="#">pages</a>
-                      <ul class="sub-menu">
-                        <li><a href="/cart">cart</a></li>
-                        <li><a href="checkout">checkout</a></li>
-                        <li><a href="wishlist">wishlist</a></li>
-                        <li>
-                          
-                        </li>
-                      </ul>
+                     {%if request.session.u_id is not None%}
+                     <ul class="sub-menu">
+                      <li><a href="/cart">cart</a></li>
+                      <li><a href="checkout">checkout</a></li>
+                      <li><a href="wishlist">wishlist</a></li>
+                      <li>
+                        
+                      </li>
+                    </ul>
+                     {%else%}
+                    {%endif%}
+
                     </li>
                     {%endif%}
                     {% comment %} {% comment %} {%if request.path == "/blog" or request.path == "/blog-details"%}
@@ -258,6 +262,7 @@
                       </ul>
                     </li>
                     {%endif%} {% endcomment %} 
+                    
                    
                     {%if request.path == "/signup" or request.path == "/login"%}
                     <li class='active'>
@@ -278,10 +283,13 @@
                     {%else%}
                     <li >
                       <a href>My account</a>
-                      <ul class="sub-menu">
+                       {%if request.session.u_id is not None%}
+                       {%else%}
+                       <ul class="sub-menu">
                         <li><a href="/signup">Sign Up</a></li>
                         <li><a href="/login">Log In</a></li>
                       </ul>
+                       {%endif%}
                     </li>
                     {%endif%}
                     {% if request.path == "/contact" %}
