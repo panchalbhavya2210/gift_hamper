@@ -26,13 +26,9 @@
         <!-- Plugins CSS -->
         <link rel="stylesheet" href="{% static 'css/plugins.css' %}" />
         <!-- Style CSS -->
-        <link rel="stylesheet" href="{% static "style.css" %}" />
+        <link rel="stylesheet" href="{% static 'style.css' %}" />
         <!-- Modernizer JS -->
-        <script src="{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/css/star-rating.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.2/js/star-rating.min.js"></script>
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
     </head>
     <script>
         /**
@@ -143,6 +139,22 @@
         .caption {
             display: none;
         }
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            
+        }
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 30px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        /* .star-rating input[type="radio"]:checked ~ label {
+            color: #ffcc00;
+        } */
         
         </style>
 <body>
@@ -322,27 +334,36 @@
                                 
                                 <div class="rating">
                                  
-<input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="1">
+                                    <div class="star-rating">
+                                        <input type="radio" id="rating1" name="rating" value="1">
+                                        <label for="rating1">★</label>
+                                        <input type="radio" id="rating2" name="rating" value="2">
+                                        <label for="rating2">★</label>
+                                        <input type="radio" id="rating3" name="rating" value="3">
+                                        <label for="rating3">★</label>
+                                        <input type="radio" id="rating4" name="rating" value="4">
+                                        <label for="rating4">★</label>
+                                        <input type="radio" id="rating5" name="rating" value="5">
+                                        <label for="rating5">★</label>
+                                        <input type="hidden" id="hidden-rating" name="hidden-rating" value="">
+                                    </div>
                                 </div>
                                 
 
                                 <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const stars = document.querySelectorAll('.star');
-                                        const ratingInput = document.getElementById('rating');
-                                    
-                                        stars.forEach(star => {
-                                            star.addEventListener('click', function() {
-                                                const value = parseInt(star.getAttribute('data-value'));
-                                                ratingInput.value = value; // Update the value of the hidden input field
-                                                stars.forEach(s => {
-                                                    if (parseInt(s.getAttribute('data-value')) <= value) {
-                                                        s.classList.add('selected');
-                                                    } else {
-                                                        s.classList.remove('selected');
-                                                    }
-                                                });
-                                            });
+                                   const ratings = document.querySelectorAll('.star-rating input[type="radio"]');
+                                   const hiddenInput = document.getElementById('hidden-rating');
+
+                                    ratings.forEach((rating, index) => {
+                                        rating.addEventListener('click', () => {
+                                            hiddenInput.value = rating.value;
+                                            alert(hiddenInput.value)
+                                            for (let i = 0; i <= index; i++) {
+                                                ratings[i].nextElementSibling.style.color = '#ffcc00';
+                                            }
+                                            for (let i = index + 1; i < ratings.length; i++) {
+                                                ratings[i].nextElementSibling.style.color = '#ccc';
+                                            }
                                         });
                                     });
                                     </script>
