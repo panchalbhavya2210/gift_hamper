@@ -82,21 +82,19 @@
         }
       
     /* Hide the radio buttons */
-    .rating input[type="radio"] {
-        display: none;
-    }   
-    
-    /* Style the stars */
-    .rating .star {
-        font-size: 24px; /* Adjust the size of the stars */
-        color: #ccc; /* Default color of the stars */
-        cursor: pointer;
-    }
-    
-    /* Style the filled-in stars when radio button is checked */
-    .rating input[type="radio"]:checked ~ .star {
-        color: gold; /* Change color of filled-in stars */
-    }
+        .rating input[type="radio"] {
+            display: none;
+        }   
+        
+        .rating .star {
+            font-size: 24px; 
+            color: #ccc; 
+            cursor: pointer;
+        }
+        
+        .rating input[type="radio"]:checked ~ .star {
+            color: gold; 
+        }
     
         .rating {
             font-size: 24px;
@@ -108,7 +106,7 @@
             cursor: pointer;
         }
         .star.selected {
-            color: gold; /* Color of selected stars */
+            color: gold; 
         }
         .user_image {
             width: 50px;
@@ -152,9 +150,6 @@
             cursor: pointer;
             color: #ccc;
         }
-        /* .star-rating input[type="radio"]:checked ~ label {
-            color: #ffcc00;
-        } */
         
         </style>
 <body>
@@ -176,8 +171,10 @@
                 
                 <!-- Product Image & Thumbnail Start -->
                 <div class="col-lg-7 col-12 mb-30">
-                    
-                   {% comment %} Previous Image slider MAIN DONT REMOVE {% endcomment %}
+                    <!-- 
+                        **
+                        * TODO DONT REMOVE ANY OF THIS
+                     -->
                     <!-- Product Thumbnail -->
                      <div class="single-product-thumbnail product-thumbnail-slider float-left">
                         {%if images%}
@@ -357,7 +354,6 @@
                                     ratings.forEach((rating, index) => {
                                         rating.addEventListener('click', () => {
                                             hiddenInput.value = rating.value;
-                                            alert(hiddenInput.value)
                                             for (let i = 0; i <= index; i++) {
                                                 ratings[i].nextElementSibling.style.color = '#ffcc00';
                                             }
