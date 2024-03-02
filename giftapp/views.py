@@ -83,6 +83,8 @@ def addproductpage(request):
 def manageproduct(request):
     productData = producttable.objects.all()
     return render(request, "manageproduct.html", {'data':productData})
+def feedbackWebsite(request):
+    return render(request, "feedback.html")
 
 
 def registerUser(request):
@@ -224,7 +226,7 @@ def Review(request, p_id):
     if request.method == 'POST':
      r_name =request.POST.get("review_name")
      cmnt = request.POST.get("cmnt")
-     rating = request.POST.get("rating")
+     rating = request.POST.get("input-1")
      f_image = request.FILES.getlist('f_image')
 
     insertdata=feedbacktable(review_name=r_name,user_id=usertable(request.session['u_id']),p_id=producttable.objects.get(id=p_id),comment=cmnt,rating=rating)
