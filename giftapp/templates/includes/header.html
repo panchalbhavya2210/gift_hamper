@@ -110,19 +110,19 @@
                             <div class="all-cart-product clearfix">
                               <div class="single-cart clearfix">
                                 <div class="cart-image">
-                                  <a href="product-details/{{cartHead.product_id.id}}"
-                                    ><img src="media/{{cartHead.product_id.p_image}}" alt=""
+                                  <a href="/product-details/{{cartHead.product_id.id}}"
+                                    ><img src="/media/{{cartHead.product_id.p_image}}" alt=""
                                   /></a>
                                 </div>
                                 <div class="cart-info">
                                   <h5>
-                                    <a href="product-details/{{cartHead.product_id.id}}"
+                                    <a href="/product-details/{{cartHead.product_id.id}}"
                                     >{{cartHead.product_id.p_name}}</a
                                     >
                                   </h5>
                                   <p>{{cartHead.c_quantity}} x ₹{{cartHead.product_id.p_price}}</p>
                                   <a
-                                    href="delcartdata/{{cartHead.product_id.id}}"
+                                    href="/delcartdata/{{cartHead.product_id.id}}"
                                     class="cart-delete"
                                     title="Remove this item"
                                     ><i class="fa fa-trash-o"></i

@@ -38,9 +38,6 @@
     </script>
     <style>
   
-        * {
-            color: #000;
-        }
         .contact-form {
             text-align: left;
             max-width: 300px;
@@ -120,17 +117,25 @@
         .imgUserDet {
             width: 100%;
             display: flex;
+            margin: 10px 0;
         }
         .imgUserDet span{
             margin-left: 10px;
         }
         .flex_rev_img {
-            display: flex;
-            flex-direction: row; /* Added to make the child items stack vertically */
-            margin: 10px 0 10px 0;
-            width: 115%;
-            overflow: scroll;
-        }
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+    width: 100%; /* Adjusted width for better responsiveness */
+    overflow-x: auto; /* Horizontal scroll if needed */
+}
+
+.flex_rev_img img {
+    max-width: 100%; /* Ensures images don't stretch beyond their original dimensions */
+    height: auto; /* Maintains aspect ratio */
+    object-fit: cover;
+}
+
         .rev_comment {
             width: 115%;
         }
@@ -169,8 +174,17 @@
             word-wrap: break-word;
         }
         .rev_disp {
-            width: 100%;        }
-
+            width: 200%;        
+        }
+        .widthFull {
+          width: 100%;
+        }
+        @media only screen and (max-width: 768px) {
+    .rev_disp {
+        width: 100%; /* Adjust width for smaller screens */
+    }
+   
+}
         </style>
 <body>
 
@@ -337,7 +351,7 @@
                         </table>
                     </div>
                     
-                    <div class="pro-info-tab tab-pane active" id="reviews">
+                    <div class="pro-info-tab tab-pane active widthFull" id="reviews">
                          <div class="contact-form no-padding">
                             <form class="review_form" action="{% url 'submit_review' data.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
 
@@ -393,76 +407,6 @@
                             <p class="form-message"></p>
                             <div class="rev_disp">
                             {% for review, images in review_multi_image.items %}
-                            <h4>{{ review.review_name }}</h4>
-                            <p>Rating: {{ review.rating }}</p>
-                            {% comment %} chal ab krde mera khana aagya 
-                            
-                            ab 2nd condition me 2 yellow star and 3 gray star samja na?
-                            {% endcomment %}
-                            {%if review.rating == 1%}
-                            <svg
-                            class="yellow-star"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#ebdb34"
-                            viewBox="0 0 22 20"
-                          >
-                            <path
-                              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                            />
-                          </svg>
-                            {%elif review.rating == 2%}
-                            <svg
-                            class="grey-star"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000"
-                            viewBox="0 0 22 20"
-                          >
-                            <path
-                              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                            />
-                          </svg>
-                             {%elif review.rating == 3%}
-                            <svg
-                            class="grey-star"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000"
-                            viewBox="0 0 22 20"
-                          >
-                            <path
-                              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                            />
-                          </svg>
-                             {%elif review.rating == 4%}
-                            <svg
-                            class="grey-star"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000"
-                            viewBox="0 0 22 20"
-                          >
-                            <path
-                              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                            />
-                          </svg>
-                             {%elif review.rating == 5%}
-                            <svg
-                            class="grey-star"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="#000"
-                            viewBox="0 0 22 20"
-                          >
-                            <path
-                              d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                            />
-                          </svg>
-                        
-                           
-                            
-                            <!-- Display user's name and image -->
                             {% for user in user %}
                                 {% if user.id == review.user_id.id %}
                                 <div class="imgUserDet">
@@ -472,6 +416,7 @@
                                 </div>
                                 <div>
                                     <span>{{ user.u_name }}</span>
+                                    <br>
                                     <span>{{review.submit_on}}</span>
                                 </div>                                    
                             </div>
