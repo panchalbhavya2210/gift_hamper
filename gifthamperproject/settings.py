@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'giftapp.apps.GiftappConfig'
 ]
 
+ALLOWED_HOSTS = ['192.168.182.55']
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "superhero",

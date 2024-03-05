@@ -186,6 +186,8 @@ def addTocart(request, id):
     try:
         if request.method == "POST":
             qty = request.POST.get('qtybox')
+            dataPrd.p_quantity = int(dataPrd.p_quantity) - int(qty)
+            dataPrd.save()
             totalAmountQty = int(qty) * int(dataPrd.p_price)
             if carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id)).exists():
                 messages.info(request, "Already added to cart")
