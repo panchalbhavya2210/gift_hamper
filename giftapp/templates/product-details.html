@@ -393,14 +393,12 @@
                             <p class="form-message"></p>
                             <div class="rev_disp">
                             {% for review, images in review_multi_image.items %}
-<<<<<<< HEAD
                             <h4>{{ review.review_name }}</h4>
                             <p>Rating: {{ review.rating }}</p>
                             {% comment %} chal ab krde mera khana aagya 
                             
                             ab 2nd condition me 2 yellow star and 3 gray star samja na?
                             {% endcomment %}
-                            {% comment %} arey easy hai dekh total 5 img ya svg jo bolo vo honge each if else me barabar ab 1st vali condition me jaha star 1 hai to vahi first svg yellow rkhne ka baki k 4 gray dekh example deta ruk 2 min{ai image vala 1 baar phir% endcomment %}
                             {%if review.rating == 1%}
                             <svg
                             class="yellow-star"
@@ -413,7 +411,7 @@
                               d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                             />
                           </svg>
-                            {%if review.rating == 2%}
+                            {%elif review.rating == 2%}
                             <svg
                             class="grey-star"
                             aria-hidden="true"
@@ -425,7 +423,7 @@
                               d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                             />
                           </svg>
-                             {%if review.rating == 3%}
+                             {%elif review.rating == 3%}
                             <svg
                             class="grey-star"
                             aria-hidden="true"
@@ -437,7 +435,7 @@
                               d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                             />
                           </svg>
-                             {%if review.rating == 4%}
+                             {%elif review.rating == 4%}
                             <svg
                             class="grey-star"
                             aria-hidden="true"
@@ -449,7 +447,7 @@
                               d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                             />
                           </svg>
-                             {%if review.rating == 5%}
+                             {%elif review.rating == 5%}
                             <svg
                             class="grey-star"
                             aria-hidden="true"
@@ -462,21 +460,7 @@
                             />
                           </svg>
                         
-                            {%elif review.rating == 2%}
-                            <h1>Hello 2</h1>
-                            {%elif review.rating == 3%}
-                            <h1>Hello 3</h1>
-                            {%elif review.rating == 4%}
-                            <h1>Hello 4</h1>
-                            {%elif review.rating == 5%}
-                            <h1>Hello 5</h1>
-                            {%else%}
-                            {%endif%}
-=======
-
->>>>>>> 7135dc8a8197e819de9915cfb9483c3ed1b64a73
-                            
-
+                           
                             
                             <!-- Display user's name and image -->
                             {% for user in user %}
@@ -775,8 +759,6 @@
                               d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                             />
                         </svg>
-
-                            {%else%}
                             {%endif%}
                             
                             <!-- Display images associated with the review -->
