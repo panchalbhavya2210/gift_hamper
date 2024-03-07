@@ -187,8 +187,14 @@ def addTocart(request, id):
     try:
         if request.method == "POST":
             qty = request.POST.get('qtybox')
-            if carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id)).exists():
-                messages.info(request, "Already added to cart")
+            cartDataPre = carttable.objects.get(product_id=producttable.objects.get(id=id))
+            if cartDataPre:
+                cartDataPre.c_quantity = cartDataPre.c_quantity + int(qty)
+                cartDataPre.total_amount = cartDataPre.total_amount + int(qty) * int(dataPrd.p_price)
+                dataPrd.p_quantity = int(dataPrd.p_quantity) - int(qty)
+                cartDataPre.save()
+                dataPrd.save()
+                messages.info(request, "Cart Updated Successfully")
             else:
                 if int(dataPrd.p_quantity) < int(qty):
                     messages.info(request, "Insufficient Quantity")
@@ -207,7 +213,7 @@ def addTocart(request, id):
         messages.error(request, "Product does not exist")
     
   
-    return redirect(reverse('base'))
+    return redirect(reverse('shop'))
     
 
 
