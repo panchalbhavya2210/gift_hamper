@@ -1,3 +1,4 @@
+from turtle import update
 from urllib import request
 from django.conf import UserSettingsHolder
 from django.shortcuts import render, redirect
@@ -186,23 +187,24 @@ def addTocart(request, id):
     try:
         if request.method == "POST":
             qty = request.POST.get('qtybox')
-            dataPrd.p_quantity = int(dataPrd.p_quantity) - int(qty)
-            dataPrd.save()
-            totalAmountQty = int(qty) * int(dataPrd.p_price)
             if carttable.objects.filter(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id)).exists():
                 messages.info(request, "Already added to cart")
             else:
-                insertdata = carttable(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id), c_quantity=qty, total_amount=totalAmountQty)
-                insertdata.save()
-                messages.success(request, "Added to cart successfully")
+                if int(dataPrd.p_quantity) < int(qty):
+                    messages.info(request, "Insufficient Quantity")
+                else:
+                    totalAmountQty = int(qty) * int(dataPrd.p_price)
+                    insertdata = carttable(userid=usertable.objects.get(id=request.session['u_id']), product_id=producttable.objects.get(id=id), c_quantity=qty, total_amount=totalAmountQty)
+                    insertdata.save()
+                    dataPrd.p_quantity = int(dataPrd.p_quantity) - int(qty)
+                    dataPrd.save()
+                    messages.success(request, "Added to cart successfully")
         else:
             messages.error(request, "Invalid request method")
     except usertable.DoesNotExist:
         messages.error(request, "User does not exist")
     except producttable.DoesNotExist:
         messages.error(request, "Product does not exist")
-    except Exception as e:
-        messages.error(request, f"An error occurred: {str(e)}")
     
   
     return redirect(reverse('base'))
@@ -220,8 +222,14 @@ def deleteproductdetail(request, id):
     return redirect('manageproduct')
 
 def delcartitem(request, id):
+    productData = producttable.objects.get(id=id)
     deleteItem = carttable.objects.get(product_id=id)
+    productData.p_quantity = deleteItem.c_quantity + productData.p_quantity;
+   
+    productData.save()
     deleteItem.delete()
+    messages.success(request, "Item removed successfully")
+    
     return redirect('cart')
 
 def Review(request, p_id):

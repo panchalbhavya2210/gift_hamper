@@ -278,18 +278,19 @@
                     </div> 
                     
                     <!-- Quantity & Cart Button -->
-
                     <div class="product-quantity-cart fix">
-                        <form action="{% url 'addtocart' data.id %}" method="post">{% csrf_token %}
-                        <div class="product-quantity">
-                            <input type="text" value="0" name="qtybox">
-                        </div>
-                        
-                        <input type="submit" class="add-to-cart" placeholder="Add to cart">
-                        </form>
-                    </div>
-
-
+                      <form action="{% url 'addtocart' data.id %}" method="post">
+                          {% csrf_token %}
+                          <div class="product-quantity">
+                              <input type="text" name="qtybox" value="0" id="inpBox">
+                          </div>
+                          
+                          <input type="submit" class="add-to-cart" value="Add to cart">
+                      </form>
+                  </div>
+                  
+               
+                  
                     
                     <!-- Action Button -->
                     <div class="product-action-button fix">
