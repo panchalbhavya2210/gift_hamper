@@ -187,7 +187,11 @@ def addTocart(request, id):
     try:
         if request.method == "POST":
             qty = request.POST.get('qtybox')
-            cartDataPre = carttable.objects.get(product_id=producttable.objects.get(id=id))
+            cartDataPre = None
+            try:
+                cartDataPre = carttable.objects.get(product_id=producttable.objects.get(id=id))
+            except:
+                pass
             if cartDataPre:
                 cartDataPre.c_quantity = cartDataPre.c_quantity + int(qty)
                 cartDataPre.total_amount = cartDataPre.total_amount + int(qty) * int(dataPrd.p_price)
